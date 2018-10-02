@@ -1,4 +1,4 @@
-package de.detim.employeemanagement.models;
+package de.detim.employeemanagement.helper;
 
 import lombok.Data;
 

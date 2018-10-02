@@ -1,6 +1,7 @@
-package de.detim.employeemanagement;
+package de.detim.employeemanagement.application;
 
-import de.detim.employeemanagement.models.Employee;
+import de.detim.employeemanagement.employee.EmployeeRepository;
+import de.detim.employeemanagement.employee.Employee;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

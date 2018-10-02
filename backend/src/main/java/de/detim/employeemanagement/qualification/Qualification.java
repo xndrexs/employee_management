@@ -1,5 +1,7 @@
-package de.detim.employeemanagement.models;
+package de.detim.employeemanagement.qualification;
 
+import de.detim.employeemanagement.employee.Employee;
+import de.detim.employeemanagement.helper.ModelBase;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

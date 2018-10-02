@@ -1,6 +1,6 @@
-package de.detim.employeemanagement;
+package de.detim.employeemanagement.employee;
 
-import de.detim.employeemanagement.models.Employee;
+import de.detim.employeemanagement.employee.Employee;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
