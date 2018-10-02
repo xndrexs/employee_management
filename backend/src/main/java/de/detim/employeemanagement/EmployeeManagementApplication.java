@@ -14,10 +14,11 @@ public class EmployeeManagementApplication {
     }
 
     @Bean
-    public CommandLineRunner test (EmployeeRepository repo ){
+    public CommandLineRunner createDummyEmployees (EmployeeRepository repo ){
         return (args) -> {
             repo.save(new Employee("Andreas", "Pöhler"));
             repo.save(new Employee("Patrick", "Notar"));
+            repo.save(new Employee("Fabian", "Junkert"));
         };
     }
 }
