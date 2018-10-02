@@ -30,9 +30,4 @@ public class Employee extends ModelBase {
         this.lastName = lastName;
         this.qualifications = new ArrayList<>();
     }
-
-    @Override
-    public String toString(){
-        return "Employee: " + firstName + " " + lastName;
-    }
 }
