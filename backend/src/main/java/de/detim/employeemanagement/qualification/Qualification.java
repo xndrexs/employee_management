@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -19,5 +20,10 @@ public class Qualification extends ModelBase {
 
     @ManyToMany(targetEntity = Employee.class)
     private List<Employee> employees;
+
+    public Qualification (String name) {
+        this.name = name;
+        this.employees = new ArrayList<>();
+    }
 
 }
