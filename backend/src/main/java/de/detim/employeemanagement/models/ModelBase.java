@@ -7,5 +7,5 @@ import javax.persistence.Id;
 public abstract class ModelBase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 }

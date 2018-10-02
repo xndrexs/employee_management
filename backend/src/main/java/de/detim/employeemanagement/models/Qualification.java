@@ -1,15 +1,22 @@
 package de.detim.employeemanagement.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 public class Qualification extends ModelBase {
 
     private String name;
 
     @ManyToMany(targetEntity = Employee.class)
-    private List employees;
+    private List<Employee> employees;
 
 }
