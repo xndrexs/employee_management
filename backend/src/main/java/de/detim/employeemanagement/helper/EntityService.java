@@ -1,8 +1,10 @@
 package de.detim.employeemanagement.helper;
 
-
 import java.util.Map;
 
+/**
+ * Aktuell unbenutzt
+ */
 public interface EntityService {
 
     // CRUD

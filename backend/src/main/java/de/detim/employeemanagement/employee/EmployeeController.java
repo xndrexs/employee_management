@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
-    @Autowired
     private EmployeeServiceImpl employeeServiceImpl;
+
+    @Autowired // Injection
+    public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
+        this.employeeServiceImpl = employeeServiceImpl;
+    }
 
     // Test, ob der Service funktioniert
     @GetMapping
