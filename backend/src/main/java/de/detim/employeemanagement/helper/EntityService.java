@@ -1,14 +1,15 @@
 package de.detim.employeemanagement.helper;
 
-import java.util.List;
+
+import java.util.Map;
 
 public interface EntityService {
 
     // CRUD
     void createEntity(EntityBase entity);
-    void readEntity(String id);
-    void updateEntity(EntityBase entity, String id);
-    void deleteEntity(String id);
-    List<EntityBase> getEntities();
+    EntityBase readEntity(Long id);
+    void updateEntity(EntityBase entity, Long id);
+    void deleteEntity(Long id);
+    Map<Long, EntityBase> getEntities();
 
 }
