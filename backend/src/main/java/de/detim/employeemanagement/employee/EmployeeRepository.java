@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     List<Employee> findByLastName(String lastName);
+    Employee findEmployeeId(Long id);
 }
