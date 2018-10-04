@@ -1,7 +1,7 @@
 package de.detim.employeemanagement.qualification;
 
 import de.detim.employeemanagement.employee.Employee;
-import de.detim.employeemanagement.helper.ModelBase;
+import de.detim.employeemanagement.helper.EntityBase;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-public class Qualification extends ModelBase {
+public class Qualification extends EntityBase {
 
     private String name;
 
