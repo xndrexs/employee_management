@@ -9,7 +9,6 @@ public class EmployeeController {
 
     private EmployeeServiceImpl employeeServiceImpl;
 
-    @Autowired // Injection
     public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
         this.employeeServiceImpl = employeeServiceImpl;
     }

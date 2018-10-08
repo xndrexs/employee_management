@@ -1,14 +1,13 @@
 package de.detim.employeemanagement.employee;
 
 import de.detim.employeemanagement.helper.EmptyEntityException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
     private final EmployeeRepository employeeRepository;
 
     public EmployeeServiceImpl(EmployeeRepository employeeRepo){
@@ -31,28 +30,28 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         } else {
             newEmployee= employeeRepository.save(employee);
-            logger.info("Employee created: %s %s", employee.getFirstName(), employee.getLastName());
+            log.info("Employee created: %s %s", employee.getFirstName(), employee.getLastName());
         }
         return newEmployee;
     }
 
     @Override
     public Employee readEmployee(Long id) {
-        return employeeRepository.findEmployeeId(id);
+        return employeeRepository.findEmployeeById(id);
     }
 
     @Override
     public Employee updateEmployee(Employee employee, Long id) {
         deleteEmployee(id);
         Employee newEmployee = createEmployee(employee);
-        logger.info("Employee updated: %s", employee.getLastName());
+        log.info("Employee updated: %s", employee.getLastName());
         return newEmployee;
     }
 
     @Override
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
-        logger.info("Employee deleted: %s", id);
+        log.info("Employee deleted: %s", id);
     }
 
     @Override
