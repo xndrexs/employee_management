@@ -23,10 +23,20 @@ public class EmployeeManagementApplication {
      */
     @Bean
     public CommandLineRunner createDummyEmployees (EmployeeRepository repo) {
+        // Hier würde ich eigentlich gerne den Service nutzen, weil das Loggin darun schon integriert ist, aber mir fehlen die Methoden des Repos?!
         return (args) -> {
             log.info("Create User: " + repo.save(new Employee("Andreas", "Pöhler")));
             log.info("Create User: " + repo.save(new Employee("Patrick", "Notar")));
             log.info("Create User: " + repo.save(new Employee("Fabian", "Junkert")));
+
+            // Testing
+            log.info("Entities found for Employee: " + repo.count());
+            for (Employee employee : repo.findAll()) {
+                log.info("Employee: " + employee.getLastName());
+                repo.delete(employee);
+                log.info("Deleted: " + employee.getLastName());
+            }
+
         };
     }
 
