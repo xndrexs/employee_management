@@ -16,31 +16,42 @@ public class QualificationServiceImpl implements QualificationService {
     }
 
     @Override
-    public void createQualification(Qualification qualification) {
+    public void createEntity(Qualification qualification) {
         qualificationRepository.save(qualification);
-        log.info("Qualification created %s: ", qualification.getName());
+        log.info("Qualification created: {}", qualification.getName());
     }
 
     @Override
-    public Qualification readQualification(Long id) {
+    public Qualification readEntity(Long id) {
         return null;
     }
 
     @Override
-    public void updateQualification(Qualification qualification, Long id) {
-        deleteQualification(id);
-        createQualification(qualification);
-        log.info("Qualification updated: %s", qualification.getName());
+    public void updateEntity(Qualification qualification, Long id) {
+        deleteEntityById(id);
+        createEntity(qualification);
+        log.info("Qualification updated: {}", qualification.getName());
     }
 
     @Override
-    public void deleteQualification(Long id) {
+    public void deleteEntityById(Long id) {
         qualificationRepository.deleteById(id);
-        log.info("Qualification deleted: %s", id);
+        log.info("Qualification deleted: {}", id);
     }
 
     @Override
-    public Iterable<Qualification> getQualifications() {
+    public void deleteEntity(Qualification qualification) {
+        qualificationRepository.delete(qualification);
+        log.info("Qualification deleted: {}", qualification.getName());
+    }
+
+    @Override
+    public Iterable<Qualification> getEntities() {
         return qualificationRepository.findAll();
+    }
+
+    @Override
+    public Long count() {
+        return qualificationRepository.count();
     }
 }

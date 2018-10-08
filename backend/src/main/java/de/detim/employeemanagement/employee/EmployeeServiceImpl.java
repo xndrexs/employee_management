@@ -14,14 +14,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepository = employeeRepo;
     }
 
-    /**
-     * Erstellt den übergebenen Benutzer in der Datenbank und gibt dieses Objekt zurück
-     * @param employee Zu erstellender Benutzer
-     * @return Gibt den neu erstellen Benutzer zurück / Null, wenn leer
-     */
     @Override
-    public Employee createEmployee(Employee employee) {
-        Employee newEmployee = null;
+    public void createEntity(Employee employee) {
         if (employee == null) {
             try {
                 throw new EmptyEntityException("Employee is empty");
@@ -29,33 +23,47 @@ public class EmployeeServiceImpl implements EmployeeService {
                 e.printStackTrace();
             }
         } else {
-            newEmployee= employeeRepository.save(employee);
-            log.info("Employee created: %s %s", employee.getFirstName(), employee.getLastName());
+            employeeRepository.save(employee);
+            log.info("Employee created:  {} {}", employee.getFirstName(), employee.getLastName());
         }
-        return newEmployee;
     }
 
     @Override
-    public Employee readEmployee(Long id) {
+    public Employee readEntity(Long id) {
         return employeeRepository.findEmployeeById(id);
     }
 
     @Override
-    public Employee updateEmployee(Employee employee, Long id) {
-        deleteEmployee(id);
-        Employee newEmployee = createEmployee(employee);
+    public void updateEntity(Employee employee, Long id) {
+        deleteEntityById(id);
+        createEntity(employee);
         log.info("Employee updated: %s", employee.getLastName());
-        return newEmployee;
     }
 
     @Override
-    public void deleteEmployee(Long id) {
+    public void deleteEntityById(Long id) {
         employeeRepository.deleteById(id);
-        log.info("Employee deleted: %s", id);
+        log.info("Employee deleted: {}", id);
     }
 
     @Override
-    public Iterable<Employee> getEmployees() {
+    public void deleteEntity(Employee employee) {
+        employeeRepository.delete(employee);
+        log.info("Employee deleted: {}", employee.getLastName());
+    }
+
+    @Override
+    public Iterable<Employee> getEntities() {
         return employeeRepository.findAll();
+    }
+
+    @Override
+    public Long count() {
+        return employeeRepository.count();
+    }
+
+    @Override
+    public void displayEmployee(Employee employee) {
+        log.info("Employee: {} {}", employee.getFirstName(), employee.getLastName());
     }
 }

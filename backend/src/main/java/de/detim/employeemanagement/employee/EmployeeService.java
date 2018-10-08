@@ -1,11 +1,7 @@
 package de.detim.employeemanagement.employee;
 
-import java.util.List;
+import de.detim.employeemanagement.helper.EntityService;
 
-public interface EmployeeService {
-    Employee createEmployee(Employee employee);
-    Employee readEmployee(Long id);
-    Employee updateEmployee(Employee employee, Long id);
-    void deleteEmployee(Long id);
-    Iterable<Employee> getEmployees();
+public interface EmployeeService extends EntityService<Employee> {
+    void displayEmployee(Employee employee);
 }

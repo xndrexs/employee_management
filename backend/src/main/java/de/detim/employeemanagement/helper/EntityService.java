@@ -1,17 +1,15 @@
 package de.detim.employeemanagement.helper;
 
-import java.util.Map;
-
-/**
- * Aktuell unbenutzt
+/*
+Service-Interface mit CRUD-Operationen
  */
-public interface EntityService {
+public interface EntityService<T extends EntityBase> {
 
-    // CRUD
-    void createEntity(EntityBase entity);
-    EntityBase readEntity(Long id);
-    void updateEntity(EntityBase entity, Long id);
-    void deleteEntity(Long id);
-    Map<Long, EntityBase> getEntities();
-
+    void createEntity(T t);
+    T readEntity(Long id);
+    void updateEntity(T t, Long id);
+    void deleteEntityById(Long id);
+    void deleteEntity(T t);
+    Iterable<T> getEntities();
+    Long count();
 }

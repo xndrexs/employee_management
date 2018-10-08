@@ -1,10 +1,8 @@
 package de.detim.employeemanagement.qualification;
 
 
-public interface QualificationService {
-    void createQualification(Qualification qualification);
-    Qualification readQualification(Long id);
-    void updateQualification(Qualification qualification, Long id);
-    void deleteQualification(Long id);
-    Iterable<Qualification> getQualifications();
+import de.detim.employeemanagement.helper.EntityService;
+
+public interface QualificationService extends EntityService<Qualification> {
+
 }

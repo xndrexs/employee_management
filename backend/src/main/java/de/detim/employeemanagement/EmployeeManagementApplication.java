@@ -1,9 +1,10 @@
 package de.detim.employeemanagement;
 
-import de.detim.employeemanagement.employee.EmployeeRepository;
 import de.detim.employeemanagement.employee.Employee;
+import de.detim.employeemanagement.employee.EmployeeServiceImpl;
 import de.detim.employeemanagement.qualification.Qualification;
-import de.detim.employeemanagement.qualification.QualificationRepository;
+import de.detim.employeemanagement.qualification.QualificationService;
+import de.detim.employeemanagement.qualification.QualificationServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,33 +23,29 @@ public class EmployeeManagementApplication {
     Testdaten für Mitarbeiter erstellen
      */
     @Bean
-    public CommandLineRunner createDummyEmployees (EmployeeRepository repo) {
+    public CommandLineRunner createDummyEmployees (EmployeeServiceImpl service) {
         // Hier würde ich eigentlich gerne den Service nutzen, weil das Loggin darun schon integriert ist, aber mir fehlen die Methoden des Repos?!
         return (args) -> {
-            log.info("Create User: " + repo.save(new Employee("Andreas", "Pöhler")));
-            log.info("Create User: " + repo.save(new Employee("Patrick", "Notar")));
-            log.info("Create User: " + repo.save(new Employee("Fabian", "Junkert")));
+            service.createEntity(new Employee("Andreas", "Pöhler"));
+            service.createEntity(new Employee("Patrick", "Notar"));
+            service.createEntity(new Employee("Fabian", "Junkert"));
 
             // Testing
-            log.info("Entities found for Employee: " + repo.count());
-            for (Employee employee : repo.findAll()) {
-                log.info("Employee: " + employee.getLastName());
-                repo.delete(employee);
-                log.info("Deleted: " + employee.getLastName());
+            log.info("Entities found for Employee: " + service.count());
+            for (Employee employee : service.getEntities()) {
+                service.displayEmployee(employee);
             }
-
         };
     }
 
     /*
     Testdaten für Qualifikationen erstellen
-     */
+    */
     @Bean
-    public CommandLineRunner createDummyQualifications (QualificationRepository repo) {
+    public CommandLineRunner createDummyQualifications (QualificationServiceImpl service) {
         return (args) -> {
-            repo.save(new Qualification("Java"));
-            repo.save(new Qualification("Angular"));
+            service.createEntity(new Qualification("Java"));
+            service.createEntity(new Qualification("Angular"));
         };
     }
-
 }
