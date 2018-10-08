@@ -1,5 +1,6 @@
 package de.detim.employeemanagement.qualification;
 
+import de.detim.employeemanagement.helper.EmptyEntityException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +18,21 @@ public class QualificationServiceImpl implements QualificationService {
 
     @Override
     public void createEntity(Qualification qualification) {
-        qualificationRepository.save(qualification);
-        log.info("Qualification created: {}", qualification.getName());
+        if (qualification == null) {
+            try {
+                throw new EmptyEntityException("Entity must not be empty");
+            } catch (EmptyEntityException e) {
+                e.printStackTrace();
+            }
+        } else {
+            qualificationRepository.save(qualification);
+            log.info("Qualification created: {}", qualification.getName());
+        }
     }
 
     @Override
     public Qualification readEntity(Long id) {
-        return null;
+        return qualificationRepository.findQualificationByIdById(id);
     }
 
     @Override
