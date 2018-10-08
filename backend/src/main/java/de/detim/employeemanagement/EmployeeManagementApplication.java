@@ -1,6 +1,7 @@
 package de.detim.employeemanagement;
 
 import de.detim.employeemanagement.employee.Employee;
+import de.detim.employeemanagement.employee.EmployeeRepository;
 import de.detim.employeemanagement.employee.EmployeeServiceImpl;
 import de.detim.employeemanagement.qualification.Qualification;
 import de.detim.employeemanagement.qualification.QualificationService;
@@ -26,14 +27,18 @@ public class EmployeeManagementApplication {
     public CommandLineRunner createDummyEmployees (EmployeeServiceImpl service) {
         // Hier würde ich eigentlich gerne den Service nutzen, weil das Loggin darun schon integriert ist, aber mir fehlen die Methoden des Repos?!
         return (args) -> {
-            service.createEntity(new Employee("Andreas", "Pöhler"));
+            Employee employee = new Employee("Andreas", "Pöhler");
+            service.createEntity(employee);
             service.createEntity(new Employee("Patrick", "Notar"));
             service.createEntity(new Employee("Fabian", "Junkert"));
 
             // Testing
+            service.addQualification(employee, new Qualification("C#"));
+
+            // Testing
             log.info("Entities found for Employee: " + service.count());
-            for (Employee employee : service.getEntities()) {
-                service.displayEmployee(employee);
+            for (Employee e : service.getEntities()) {
+                service.displayEmployee(e);
             }
         };
     }

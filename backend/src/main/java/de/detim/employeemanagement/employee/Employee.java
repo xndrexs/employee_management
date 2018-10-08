@@ -30,4 +30,8 @@ public class Employee extends EntityBase {
         this.lastName = lastName;
         this.qualifications = new ArrayList<>();
     }
+
+    public void addQualification(Qualification qualification){
+        qualifications.add(qualification);
+    }
 }

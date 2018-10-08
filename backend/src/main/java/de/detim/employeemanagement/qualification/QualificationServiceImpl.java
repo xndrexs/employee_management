@@ -1,19 +1,21 @@
 package de.detim.employeemanagement.qualification;
 
+import de.detim.employeemanagement.employee.Employee;
+import de.detim.employeemanagement.employee.EmployeeRepository;
 import de.detim.employeemanagement.helper.EmptyEntityException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class QualificationServiceImpl implements QualificationService {
 
-    private QualificationRepository qualificationRepository;
+    private final QualificationRepository qualificationRepository;
+    private final EmployeeRepository employeeRepository;
 
-    public QualificationServiceImpl(QualificationRepository qualificationRepository) {
+    public QualificationServiceImpl(QualificationRepository qualificationRepository, EmployeeRepository employeeRepository, EmployeeRepository employeeRepository1) {
         this.qualificationRepository = qualificationRepository;
+        this.employeeRepository = employeeRepository1;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class QualificationServiceImpl implements QualificationService {
 
     @Override
     public Qualification readEntity(Long id) {
-        return qualificationRepository.findQualificationByIdById(id);
+        return qualificationRepository.findQualificationById(id);
     }
 
     @Override
@@ -62,5 +64,14 @@ public class QualificationServiceImpl implements QualificationService {
     @Override
     public Long count() {
         return qualificationRepository.count();
+    }
+
+    @Override
+    public void addEmployee(Qualification qualification, Employee employee) {
+        qualification.addEmployee(employee);
+        employee.addQualification(qualification);
+        qualificationRepository.save(qualification);
+        employeeRepository.save(employee);
+
     }
 }

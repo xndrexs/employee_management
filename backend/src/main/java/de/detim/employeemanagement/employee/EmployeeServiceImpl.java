@@ -1,17 +1,22 @@
 package de.detim.employeemanagement.employee;
 
 import de.detim.employeemanagement.helper.EmptyEntityException;
+import de.detim.employeemanagement.qualification.Qualification;
+import de.detim.employeemanagement.qualification.QualificationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final QualificationRepository qualificationRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepo){
+    public EmployeeServiceImpl(EmployeeRepository employeeRepo, QualificationRepository qualificationRepository){
         this.employeeRepository = employeeRepo;
+        this.qualificationRepository = qualificationRepository;
     }
 
     @Override
@@ -65,5 +70,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void displayEmployee(Employee employee) {
         log.info("Employee: {} {}", employee.getFirstName(), employee.getLastName());
+    }
+
+    @Override
+    public void addQualification(Employee employee, Qualification qualification) {
+        employee.addQualification(qualification);
+        qualification.addEmployee(employee);
+        qualificationRepository.save(qualification);
+        employeeRepository.save(employee);
     }
 }
