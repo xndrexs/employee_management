@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
-    private EmployeeServiceImpl employeeServiceImpl;
+    private EmployeeService service;
 
-    public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
-        this.employeeServiceImpl = employeeServiceImpl;
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
     }
 
     // Test, ob der Service funktioniert
     @GetMapping
     public Iterable<Employee> index(){
-        return employeeServiceImpl.getEntities();
+        return service.getEntities();
     }
 }

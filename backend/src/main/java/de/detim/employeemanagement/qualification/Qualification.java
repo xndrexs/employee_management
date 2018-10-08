@@ -1,7 +1,7 @@
 package de.detim.employeemanagement.qualification;
 
 import de.detim.employeemanagement.employee.Employee;
-import de.detim.employeemanagement.helper.EntityBase;
+import de.detim.employeemanagement.helper.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-public class Qualification extends EntityBase {
+public class Qualification extends BaseEntity {
 
     private String name;
 
@@ -28,6 +28,15 @@ public class Qualification extends EntityBase {
 
     public void addEmployee(Employee employee) {
         employees.add(employee);
+    }
+
+    /**
+     * Updates the values with the given qualification
+     * @param qualification values of the qualification
+     */
+    public void updateQualification(Qualification qualification) {
+        name = qualification.getName();
+        employees = new ArrayList<>(qualification.getEmployees());
     }
 
 }

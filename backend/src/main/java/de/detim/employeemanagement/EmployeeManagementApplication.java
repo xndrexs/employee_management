@@ -1,19 +1,17 @@
 package de.detim.employeemanagement;
 
 import de.detim.employeemanagement.employee.Employee;
-import de.detim.employeemanagement.employee.EmployeeRepository;
-import de.detim.employeemanagement.employee.EmployeeServiceImpl;
+import de.detim.employeemanagement.employee.EmployeeService;
 import de.detim.employeemanagement.qualification.Qualification;
 import de.detim.employeemanagement.qualification.QualificationService;
-import de.detim.employeemanagement.qualification.QualificationServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
 @Slf4j
+@SpringBootApplication
 public class EmployeeManagementApplication {
 
     public static void main(String[] args) {
@@ -24,8 +22,7 @@ public class EmployeeManagementApplication {
     Testdaten für Mitarbeiter erstellen
      */
     @Bean
-    public CommandLineRunner createDummyEmployees (EmployeeServiceImpl service) {
-        // Hier würde ich eigentlich gerne den Service nutzen, weil das Loggin darun schon integriert ist, aber mir fehlen die Methoden des Repos?!
+    public CommandLineRunner createDummyEmployees (EmployeeService service) {
         return (args) -> {
             Employee employee = new Employee("Andreas", "Pöhler");
             service.createEntity(employee);
@@ -47,7 +44,7 @@ public class EmployeeManagementApplication {
     Testdaten für Qualifikationen erstellen
     */
     @Bean
-    public CommandLineRunner createDummyQualifications (QualificationServiceImpl service) {
+    public CommandLineRunner createDummyQualifications (QualificationService service) {
         return (args) -> {
             service.createEntity(new Qualification("Java"));
             service.createEntity(new Qualification("Angular"));
