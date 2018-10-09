@@ -1,12 +1,7 @@
 package de.detim.employeemanagement.employee;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-    /**
-     * Gibt einen Mitarbeiter zurück
-     * @param id ID des Mitarbeiters
-     * @return Mitarbeiter der übergebenen ID
-     */
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findEmployeeById(Long id);
 }

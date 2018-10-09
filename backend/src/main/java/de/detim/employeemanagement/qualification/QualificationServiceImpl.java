@@ -4,7 +4,7 @@ import de.detim.employeemanagement.employee.Employee;
 import de.detim.employeemanagement.employee.EmployeeRepository;
 import de.detim.employeemanagement.exceptions.EmptyEntityException;
 import de.detim.employeemanagement.exceptions.EntityNotFoundException;
-import de.detim.employeemanagement.exceptions.IdsNotMachtingException;
+import de.detim.employeemanagement.exceptions.IdsNotMatchingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class QualificationServiceImpl implements QualificationService {
 
     @Override
     public Qualification findEntity(Long id) {
-        return qualificationRepository.findQualificationById(id);
+        return qualificationRepository.getOne(id);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class QualificationServiceImpl implements QualificationService {
         if (qualification == null) {
             throw new EmptyEntityException();
         } else if (qualification.getId() == id) {
-            throw new IdsNotMachtingException(qualification.getId(), id);
+            throw new IdsNotMatchingException(qualification.getId(), id);
         } else if (!employeeRepository.existsById(id)){
             throw new EntityNotFoundException();
         } else {

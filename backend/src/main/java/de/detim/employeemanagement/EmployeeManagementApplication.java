@@ -35,10 +35,12 @@ public class EmployeeManagementApplication {
             // Testing
             log.info("Entities found for Employee: " + service.count());
             for (Employee e : service.getEntities()) {
-                service.displayEmployee(e);
+                log.info(e.getLastName());
             }
             employee.setCitizenship("German");
             service.updateEntity(employee, employee.getId());
+            employee = null;
+            service.updateEntity(employee, (long)1);
         };
     }
 

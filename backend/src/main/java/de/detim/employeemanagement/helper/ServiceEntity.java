@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ser.Serializers;
  * Service-Interface mit CRUD-Operationen
  * @param <T>
  */
-public interface ServiceEntitiy<T extends BaseEntity> {
+public interface ServiceEntity<T extends BaseEntity> {
     /**
      * Creates a new Entity
      * @param t Entity to create

@@ -1,10 +1,9 @@
 package de.detim.employeemanagement.qualification;
 
-
 import de.detim.employeemanagement.employee.Employee;
-import de.detim.employeemanagement.helper.ServiceEntitiy;
+import de.detim.employeemanagement.helper.ServiceEntity;
 
-public interface QualificationService extends ServiceEntitiy<Qualification> {
+public interface QualificationService extends ServiceEntity<Qualification> {
     /**
      * Fügt der Qualifikation einen Mitarbeiter hinzu
      * @param qualification Qualifikation, welcher ein Mitarbeiter hinzugefügt werden soll

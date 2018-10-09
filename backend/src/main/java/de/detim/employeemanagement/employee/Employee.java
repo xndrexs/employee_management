@@ -24,7 +24,7 @@ public class Employee extends BaseEntity {
     private String degree;
     private String position;
 
-    @ManyToMany(targetEntity = Qualification.class)
+    @ManyToMany(targetEntity = Qualification.class, fetch = FetchType.EAGER)
     private List<Qualification> qualifications;
 
     public Employee (String firstName, String lastName) {

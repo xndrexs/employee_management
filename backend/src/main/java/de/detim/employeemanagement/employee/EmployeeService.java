@@ -1,15 +1,9 @@
 package de.detim.employeemanagement.employee;
 
-import de.detim.employeemanagement.helper.ServiceEntitiy;
+import de.detim.employeemanagement.helper.ServiceEntity;
 import de.detim.employeemanagement.qualification.Qualification;
 
-public interface EmployeeService extends ServiceEntitiy<Employee> {
-    /**
-     * Gibt den Vor- und Nachnamen des Mitarbeiters aus
-     * @param employee Mitarbeiter
-     */
-    Employee displayEmployee(Employee employee);
-
+public interface EmployeeService extends ServiceEntity<Employee> {
     /**
      * Fügt dem Mitarbeiter eine Qualifikation hinzu
      * @param employee Mitarbeiter, dem eine Qualifikation hinzugefügt werden soll
