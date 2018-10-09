@@ -1,12 +1,11 @@
 package de.detim.employeemanagement.qualification;
 
 import de.detim.employeemanagement.employee.Employee;
-import de.detim.employeemanagement.helper.ModelBase;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import de.detim.employeemanagement.helper.BaseEntity;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,16 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-public class Qualification extends ModelBase {
+public class Qualification extends BaseEntity {
 
     private String name;
 
-    @ManyToMany(targetEntity = Employee.class)
+    @ManyToMany(targetEntity = Employee.class, fetch = FetchType.EAGER)
     private List<Employee> employees;
 
     public Qualification (String name) {
         this.name = name;
         this.employees = new ArrayList<>();
     }
-
 }

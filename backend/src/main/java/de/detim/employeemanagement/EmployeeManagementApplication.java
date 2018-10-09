@@ -1,14 +1,16 @@
 package de.detim.employeemanagement;
 
-import de.detim.employeemanagement.employee.EmployeeRepository;
 import de.detim.employeemanagement.employee.Employee;
+import de.detim.employeemanagement.employee.EmployeeService;
 import de.detim.employeemanagement.qualification.Qualification;
-import de.detim.employeemanagement.qualification.QualificationRepository;
+import de.detim.employeemanagement.qualification.QualificationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+@Slf4j
 @SpringBootApplication
 public class EmployeeManagementApplication {
 
@@ -16,21 +18,40 @@ public class EmployeeManagementApplication {
         SpringApplication.run(EmployeeManagementApplication.class, args);
     }
 
+    /*
+    Testdaten für Mitarbeiter erstellen
+     */
     @Bean
-    public CommandLineRunner createDummyEmployees (EmployeeRepository repo) {
+    public CommandLineRunner createDummyEmployees (EmployeeService service) {
         return (args) -> {
-            repo.save(new Employee("Andreas", "Pöhler"));
-            repo.save(new Employee("Patrick", "Notar"));
-            repo.save(new Employee("Fabian", "Junkert"));
+            Employee employee = new Employee("Andreas", "Pöhler");
+            service.createEntity(employee);
+            service.createEntity(new Employee("Patrick", "Notar"));
+            service.createEntity(new Employee("Fabian", "Junkert"));
+
+            // Testing
+            service.addQualification(employee, new Qualification("C#"));
+
+            // Testing
+            log.info("Entities found for Employee: " + service.count());
+            for (Employee e : service.getEntities()) {
+                log.info(e.getLastName());
+            }
+            employee.setCitizenship("German");
+            service.updateEntity(employee, employee.getId());
+            employee = null;
+            service.updateEntity(employee, (long)2);
         };
     }
 
+    /*
+    Testdaten für Qualifikationen erstellen
+    */
     @Bean
-    public CommandLineRunner createDummyQualifications (QualificationRepository repo) {
+    public CommandLineRunner createDummyQualifications (QualificationService service) {
         return (args) -> {
-            repo.save(new Qualification("Java"));
-            repo.save(new Qualification("Angular"));
+            service.createEntity(new Qualification("Java"));
+            service.createEntity(new Qualification("Angular"));
         };
     }
-
 }
