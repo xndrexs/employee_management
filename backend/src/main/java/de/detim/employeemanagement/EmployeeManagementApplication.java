@@ -40,7 +40,7 @@ public class EmployeeManagementApplication {
             employee.setCitizenship("German");
             service.updateEntity(employee, employee.getId());
             employee = null;
-            service.updateEntity(employee, (long)1);
+            service.updateEntity(employee, (long)2);
         };
     }
 

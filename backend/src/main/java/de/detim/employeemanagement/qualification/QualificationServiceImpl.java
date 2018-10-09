@@ -22,12 +22,9 @@ public class QualificationServiceImpl implements QualificationService {
 
     @Override
     public Qualification createEntity(Qualification qualification) {
-        if (qualification == null) {
-            throw new EmptyEntityException();
-        } else {
-            qualificationRepository.save(qualification);
-            log.info("Qualification created: {}", qualification.getName());
-        }
+        checkEntityNotNull(qualification);
+        qualificationRepository.save(qualification);
+        log.info("Qualification created: {}", qualification.getName());
         return qualification;
     }
 
@@ -39,18 +36,15 @@ public class QualificationServiceImpl implements QualificationService {
     @Override
     public Qualification updateEntity(Qualification qualification, Long id) {
         Qualification updatedQualification = null;
-        if (qualification == null) {
-            throw new EmptyEntityException();
-        } else if (qualification.getId() == id) {
-            throw new IdsNotMatchingException(qualification.getId(), id);
-        } else if (!employeeRepository.existsById(id)){
+        checkEntityNotNull(qualification);
+        checkEntityIdMatch(qualification, id);
+        if (!employeeRepository.existsById(id)){
             throw new EntityNotFoundException();
-        } else {
-            updatedQualification = qualificationRepository.findQualificationById(id);
-            updatedQualification.updateQualification(qualification);
-            qualificationRepository.save(qualification);
-            log.info("Qualification updated: {}", qualification.getName());
         }
+        updatedQualification = qualificationRepository.findQualificationById(id);
+        updatedQualification.updateQualification(qualification);
+        qualificationRepository.save(qualification);
+        log.info("Qualification updated: {}", qualification.getName());
         return updatedQualification;
     }
 

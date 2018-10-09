@@ -2,10 +2,7 @@ package de.detim.employeemanagement.employee;
 
 import de.detim.employeemanagement.helper.BaseEntity;
 import de.detim.employeemanagement.qualification.Qualification;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Employee extends BaseEntity {
 

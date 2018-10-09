@@ -24,12 +24,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createEntity(Employee employee) {
-        if (employee == null) {
-            throw new EmptyEntityException();
-        } else {
-            employeeRepository.save(employee);
-            log.info("Employee created:  {} {}", employee.getFirstName(), employee.getLastName());
-        }
+        checkEntityNotNull(employee);
+        employeeRepository.save(employee);
+        log.info("Employee created:  {} {}", employee.getFirstName(), employee.getLastName());
         return employee;
     }
 
@@ -41,18 +38,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee updateEntity(Employee employee, Long id) {
         Employee updatedEmployee = null;
-        if (employee == null) {
-            throw new EmptyEntityException();
-        } else if (!employee.getId().equals(id)) {
-            throw new IdsNotMatchingException(employee.getId(), id);
-        } else if (!employeeRepository.existsById(id)){
+        checkEntityNotNull(employee);
+        checkEntityIdMatch(employee, id);
+        if (!employeeRepository.existsById(id)){
             throw new EntityNotFoundException();
-        } else {
-            updatedEmployee = employeeRepository.findEmployeeById(id);
-            updatedEmployee.updateEmployee(employee);
-            employeeRepository.save(updatedEmployee);
-            log.info("Employee updated: " + employee.getLastName());
         }
+        updatedEmployee = employeeRepository.findEmployeeById(id);
+        updatedEmployee.updateEmployee(employee);
+        employeeRepository.save(updatedEmployee);
+        log.info("Employee updated: " + employee.getLastName());
         return updatedEmployee;
     }
 

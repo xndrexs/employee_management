@@ -1,12 +1,25 @@
 package de.detim.employeemanagement.helper;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
+import de.detim.employeemanagement.exceptions.EmptyEntityException;
+import de.detim.employeemanagement.exceptions.IdsNotMatchingException;
 
 /**
  * Service-Interface mit CRUD-Operationen
  * @param <T>
  */
 public interface ServiceEntity<T extends BaseEntity> {
+    default void checkEntityNotNull(T t) {
+        if (t == null) {
+            throw new EmptyEntityException();
+        }
+    }
+
+    default void checkEntityIdMatch(T t, Long id) {
+        if (!t.getId().equals(id)) {
+            throw new IdsNotMatchingException(t.getId(), id);
+        }
+    }
     /**
      * Creates a new Entity
      * @param t Entity to create

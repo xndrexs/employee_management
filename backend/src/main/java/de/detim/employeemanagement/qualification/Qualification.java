@@ -2,19 +2,16 @@ package de.detim.employeemanagement.qualification;
 
 import de.detim.employeemanagement.employee.Employee;
 import de.detim.employeemanagement.helper.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Qualification extends BaseEntity {
 
