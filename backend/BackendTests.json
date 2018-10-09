@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "09b8bf81-19d3-4660-aaa5-efa9ac03c2da",
+		"name": "BackendTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8083/employees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"firstName\": \"Andi\",\n    \"lastName\": \"Pöhli\",\n    \"citizenship\": null,\n    \"degree\": null,\n    \"position\": null,\n    \"qualifications\": [{\n    \t\"id\": 1,\n    \t\"name\": \"java\"\n    }]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/employees/1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"firstName\": \"Andi\",\n    \"lastName\": \"Pöhli\",\n    \"citizenship\": null,\n    \"degree\": null,\n    \"position\": null,\n    \"qualifications\": [{\n    \t\"id\": 1,\n    \t\"name\": \"java\"\n    }]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/employees/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"employees",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/employees",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"firstName\": \"Amelia\",\n    \"lastName\": \"Wilewska\",\n    \"citizenship\": null,\n    \"degree\": null,\n    \"position\": null,\n    \"qualifications\": [{\n    \t\"id\": 4,\n    \t\"name\": \"Java\"\n    }]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/employees/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/employees/4",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"firstName\": \"Amelia\",\n    \"lastName\": \"Wilewska\",\n    \"citizenship\": null,\n    \"degree\": null,\n    \"position\": null,\n    \"qualifications\": [{\n    \t\"id\": 4,\n    \t\"name\": \"Java\"\n    }]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/employees/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"employees",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/employees/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"firstName\": \"Andreas\",\n    \"lastName\": \"Pöhler\",\n    \"citizenship\": \"German\",\n    \"degree\": \"Bachelor\",\n    \"position\": \"Praktikant\",\n    \"qualifications\": [{\n    \t\"id\": 1,\n    \t\"name\": \"C#\"\n    }]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/employees/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"employees",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/qualifications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8083/qualifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"qualifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/qualifications/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8083/qualifications/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"qualifications",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/qualifications",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10,\n    \"name\": \"Spring\",\n    \"employees\": []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/qualifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"qualifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/qualifications/10",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10,\n    \"name\": \"Spring\",\n    \"employees\": []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/qualifications/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"qualifications",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8083/qualifications/4",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"name\": \"Java8\",\n    \"employees\": []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/qualifications/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"qualifications",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

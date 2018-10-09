@@ -38,7 +38,7 @@ public class QualificationServiceImpl implements QualificationService {
     public Qualification updateEntity(Qualification qualification, Long id) {
         checkEntityNotNull(qualification);
         checkEntityIdMatch(qualification, id);
-        if (!employeeRepository.existsById(id)){
+        if (!qualificationRepository.existsById(id)){
             throw new EntityNotFoundException();
         }
         Qualification updatedQualification = updateQualification(qualification, id);

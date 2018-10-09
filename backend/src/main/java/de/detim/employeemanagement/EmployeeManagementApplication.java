@@ -24,21 +24,13 @@ public class EmployeeManagementApplication {
     @Bean
     public CommandLineRunner createDummyEmployees (EmployeeService service) {
         return (args) -> {
-            Employee employee = new Employee("Andreas", "Pöhler");
-            service.createEntity(employee);
+            service.createEntity(new Employee("Andreas", "Pöhler"));
             service.createEntity(new Employee("Patrick", "Notar"));
             service.createEntity(new Employee("Fabian", "Junkert"));
 
-            // Testing
-            service.addQualification(employee, new Qualification("C#"));
-
-            // Testing
-            log.info("Entities found for Employee: " + service.count());
-            for (Employee e : service.getEntities()) {
-                log.info(e.getLastName());
-            }
-            employee.setCitizenship("German");
-            service.updateEntity(employee, employee.getId());
+            service.addQualification(service.findEntity((long)1), new Qualification("C#"));
+            service.addQualification(service.findEntity((long)2), new Qualification("C++"));
+            service.addQualification(service.findEntity((long)3), new Qualification("Python"));
         };
     }
 
@@ -50,6 +42,8 @@ public class EmployeeManagementApplication {
         return (args) -> {
             service.createEntity(new Qualification("Java"));
             service.createEntity(new Qualification("Angular"));
+            service.createEntity(new Qualification("MySQL"));
+            service.createEntity(new Qualification("Scrum"));
         };
     }
 }
