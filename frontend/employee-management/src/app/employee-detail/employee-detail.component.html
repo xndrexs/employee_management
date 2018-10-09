@@ -1,3 +1,6 @@
-<p>
-  employee-detail works!
-</p>
+<div *ngIf="employee">
+  <h2> Mitarbeiter: {{ employee.name }}</h2>
+  <label>
+    <input [(ngModel)]="employee.name" placeholder="Name">
+  </label>
+</div>

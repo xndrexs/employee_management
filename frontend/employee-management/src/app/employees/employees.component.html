@@ -1,5 +1,6 @@
 <h2>Mitarbeiter</h2>
 <div>
+  <button>Neu...</button>
   <ul class="employees">
     <li *ngFor="let employee of employees"
         [class.selected]="employee === selectedEmployee"
@@ -7,10 +8,5 @@
       <span class="badge">{{ employee.id}}</span> {{ employee.name }}
     </li>
   </ul>
-  <div *ngIf="selectedEmployee">
-    <h2> Mitarbeiter: {{ selectedEmployee.name }}</h2>
-    <label>
-      <input [(ngModel)]="selectedEmployee.name" placeholder="Name">
-    </label>
-  </div>
 </div>
+<app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
