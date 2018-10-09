@@ -3,7 +3,7 @@ package de.detim.employeemanagement.qualification;
 import de.detim.employeemanagement.employee.Employee;
 import de.detim.employeemanagement.employee.EmployeeRepository;
 import de.detim.employeemanagement.exceptions.EmptyEntityException;
-import de.detim.employeemanagement.exceptions.IdNotFoundException;
+import de.detim.employeemanagement.exceptions.EntityNotFoundException;
 import de.detim.employeemanagement.exceptions.IdsNotMachtingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -42,9 +42,9 @@ public class QualificationServiceImpl implements QualificationService {
         if (qualification == null) {
             throw new EmptyEntityException();
         } else if (qualification.getId() == id) {
-            throw new IdsNotMachtingException();
+            throw new IdsNotMachtingException(qualification.getId(), id);
         } else if (!employeeRepository.existsById(id)){
-            throw new IdNotFoundException();
+            throw new EntityNotFoundException();
         } else {
             updatedQualification = qualificationRepository.findQualificationById(id);
             updatedQualification.updateQualification(qualification);

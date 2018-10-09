@@ -37,6 +37,8 @@ public class EmployeeManagementApplication {
             for (Employee e : service.getEntities()) {
                 service.displayEmployee(e);
             }
+            employee.setCitizenship("German");
+            service.updateEntity(employee, employee.getId());
         };
     }
 

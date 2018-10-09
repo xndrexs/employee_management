@@ -1,7 +1,7 @@
 package de.detim.employeemanagement.employee;
 
 import de.detim.employeemanagement.exceptions.EmptyEntityException;
-import de.detim.employeemanagement.exceptions.IdNotFoundException;
+import de.detim.employeemanagement.exceptions.EntityNotFoundException;
 import de.detim.employeemanagement.exceptions.IdsNotMachtingException;
 import de.detim.employeemanagement.qualification.Qualification;
 import de.detim.employeemanagement.qualification.QualificationRepository;
@@ -41,15 +41,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee updatedEmployee = null;
         if (employee == null) {
             throw new EmptyEntityException();
-        } else if (employee.getId() == id) {
-            throw new IdsNotMachtingException();
+        } else if (!employee.getId().equals(id)) {
+            throw new IdsNotMachtingException(employee.getId(), id);
         } else if (!employeeRepository.existsById(id)){
-            throw new IdNotFoundException();
+            throw new EntityNotFoundException();
         } else {
             updatedEmployee = employeeRepository.findEmployeeById(id);
             updatedEmployee.updateEmployee(employee);
             employeeRepository.save(updatedEmployee);
-            log.info("Employee updated: {}", employee.getLastName());
+            log.info("Employee updated: " + employee.getLastName());
         }
         return updatedEmployee;
     }
