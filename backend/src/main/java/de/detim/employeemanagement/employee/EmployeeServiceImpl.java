@@ -1,13 +1,12 @@
 package de.detim.employeemanagement.employee;
 
-import de.detim.employeemanagement.exceptions.EmptyEntityException;
 import de.detim.employeemanagement.exceptions.EntityNotFoundException;
-import de.detim.employeemanagement.exceptions.IdsNotMatchingException;
 import de.detim.employeemanagement.qualification.Qualification;
 import de.detim.employeemanagement.qualification.QualificationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -37,16 +36,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee updateEntity(Employee employee, Long id) {
-        Employee updatedEmployee = null;
         checkEntityNotNull(employee);
         checkEntityIdMatch(employee, id);
         if (!employeeRepository.existsById(id)){
             throw new EntityNotFoundException();
         }
-        updatedEmployee = employeeRepository.findEmployeeById(id);
-        updatedEmployee.updateEmployee(employee);
+        Employee updatedEmployee = updateEmployee(employee, id);
         employeeRepository.save(updatedEmployee);
-        log.info("Employee updated: " + employee.getLastName());
+        log.info("Employee updated: " + updatedEmployee.getLastName());
         return updatedEmployee;
     }
 
@@ -75,16 +72,51 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.count();
     }
 
+    /**
+     * Adds and qualification to the list of the employee
+     * @param employee Mitarbeiter, dem eine Qualifikation hinzugefügt werden soll
+     * @param qualification Qualfikation, welche dem übergebenen Mitarbeiter hinzugefügt werden soll
+     * @return
+     */
     @Override
     public Employee addQualification(Employee employee, Qualification qualification) {
-        employee.addQualification(qualification);
-        List<Qualification> qualificationArrayList = employee.getQualifications();
-        qualificationArrayList.add(qualification);
-        employee.setQualifications(qualificationArrayList);
-        qualification.addEmployee(employee);
-        qualificationRepository.save(qualification);
-        employeeRepository.save(employee);
+        addQualificationToEmployee(qualification, employee);
         log.info("Qualification '{}' added to {}.", qualification.getName(), employee.getLastName());
         return employee;
+    }
+
+    /**
+     * Private method to help update the employee
+     * @param employee
+     * @param id
+     * @return updated employee
+     */
+    private Employee updateEmployee(Employee employee, Long id) {
+        Employee updatedEmployee = employeeRepository.findEmployeeById(id);
+        updatedEmployee.setFirstName(employee.getFirstName());
+        updatedEmployee.setLastName(employee.getLastName());
+        updatedEmployee.setCitizenship(employee.getCitizenship());
+        updatedEmployee.setDegree(employee.getDegree());
+        updatedEmployee.setPosition(employee.getPosition());
+        updatedEmployee.setQualifications(new ArrayList<>(employee.getQualifications()));
+        return updatedEmployee;
+    }
+
+    /**
+     * private method to set the elements into the lists
+     * @param qualification
+     * @param employee
+     */
+    private void addQualificationToEmployee(Qualification qualification, Employee employee) {
+        List<Qualification> qualificationList = employee.getQualifications();
+        qualificationList.add(qualification);
+        employee.setQualifications(qualificationList);
+
+        List<Employee> employeeList = qualification.getEmployees();
+        employeeList.add(employee);
+        qualification.setEmployees(employeeList);
+
+        qualificationRepository.save(qualification);
+        employeeRepository.save(employee);
     }
 }

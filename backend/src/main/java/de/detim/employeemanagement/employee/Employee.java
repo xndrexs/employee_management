@@ -28,25 +28,4 @@ public class Employee extends BaseEntity {
         this.lastName = lastName;
         this.qualifications = new ArrayList<>();
     }
-
-    /**
-     * Fügt dem Mitarbeiter eine Qualifikation hinzu
-     * @param qualification Qualifikation, welche hinzugefügt werden soll
-     */
-    public void addQualification(Qualification qualification){
-        qualifications.add(qualification);
-    }
-
-    /**
-     * Aktualisiert die Werte des übergebenen Benutzers
-     * @param employee Benutzer, dessen Werte übernommen werden sollen
-     */
-    public void updateEmployee(Employee employee){
-        firstName = employee.getFirstName();
-        lastName = employee.getLastName();
-        citizenship = employee.getCitizenship();
-        degree = employee.getDegree();
-        position = employee.getPosition();
-        qualifications = new ArrayList<>(employee.getQualifications());
-    }
 }

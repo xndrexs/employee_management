@@ -24,18 +24,4 @@ public class Qualification extends BaseEntity {
         this.name = name;
         this.employees = new ArrayList<>();
     }
-
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
-    }
-
-    /**
-     * Updates the values with the given qualification
-     * @param qualification values of the qualification
-     */
-    public void updateQualification(Qualification qualification) {
-        name = qualification.getName();
-        employees = new ArrayList<>(qualification.getEmployees());
-    }
-
 }
