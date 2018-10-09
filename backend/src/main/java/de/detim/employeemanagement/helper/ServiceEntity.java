@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ser.Serializers;
 import de.detim.employeemanagement.exceptions.EmptyEntityException;
 import de.detim.employeemanagement.exceptions.IdsNotMatchingException;
 
+import java.util.List;
+
 /**
  * Service-Interface mit CRUD-Operationen
  * @param <T>
@@ -53,7 +55,7 @@ public interface ServiceEntity<T extends BaseEntity> {
      * Returns all entities
      * @return An iterable of entities found
      */
-    Iterable<T> getEntities();
+    List<T> getEntities();
 
     /**
      * Counts the entities

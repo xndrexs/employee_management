@@ -5,7 +5,6 @@ import de.detim.employeemanagement.helper.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.persistence.metamodel.StaticMetamodel;
 import java.util.ArrayList;
 import java.util.List;
 

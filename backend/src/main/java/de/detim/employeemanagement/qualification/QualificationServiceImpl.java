@@ -31,7 +31,7 @@ public class QualificationServiceImpl implements QualificationService {
 
     @Override
     public Qualification findEntity(Long id) {
-        return qualificationRepository.getOne(id);
+        return qualificationRepository.findQualificationById(id);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class QualificationServiceImpl implements QualificationService {
     }
 
     @Override
-    public Iterable<Qualification> getEntities() {
+    public List<Qualification> getEntities() {
         return qualificationRepository.findAll();
     }
 

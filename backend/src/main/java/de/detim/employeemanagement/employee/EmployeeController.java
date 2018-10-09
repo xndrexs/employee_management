@@ -1,7 +1,8 @@
 package de.detim.employeemanagement.employee;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class EmployeeController {
@@ -12,9 +13,28 @@ public class EmployeeController {
         this.service = service;
     }
 
-    // Test, ob der Service funktioniert
-    @GetMapping
-    public Iterable<Employee> index(){
+    @GetMapping("/employees")
+    public List<Employee> listEmployees(){
         return service.getEntities();
+    }
+
+    @GetMapping("/employees/{id}")
+    public Employee getEmployee(@PathVariable Long id){
+        return service.findEntity(id);
+    }
+
+    @PostMapping("/employees")
+    public Employee newEmployee(@RequestBody Employee newEmployee){
+        return service.createEntity(newEmployee);
+    }
+
+    @PutMapping("/employees/{id}")
+    public Employee editEmployee(@RequestBody Employee employee, @PathVariable Long id){
+        return service.updateEntity(employee, id);
+    }
+
+    @DeleteMapping("employees/{id}")
+    public Long deleteEmployee(@PathVariable Long id){
+        return service.deleteEntityById(id);
     }
 }
