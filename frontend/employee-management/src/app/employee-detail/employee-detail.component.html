@@ -3,6 +3,16 @@
   <label>
     <input [(ngModel)]="employee.name" placeholder="Name">
   </label>
+  Name: {{ employee.name; employee.lastName }}
+  Position: {{ employee.position }}
+  Abschluss: {{ employee.degree }}
+  <div>
+    <ul>
+      <li *ngFor="let qualification of employee.qualifications">
+        {{ qualification }}
+      </li>
+    </ul>
+  </div>
   <br>
   <button (click)="goBack()">Zurück</button>
 </div>
