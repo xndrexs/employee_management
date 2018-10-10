@@ -31,14 +31,14 @@ public class QualificationServiceImpl implements QualificationService {
 
     @Override
     public Qualification findEntity(Long id) {
-        return qualificationRepository.getOne(id);
+        return qualificationRepository.findQualificationById(id);
     }
 
     @Override
     public Qualification updateEntity(Qualification qualification, Long id) {
         checkEntityNotNull(qualification);
         checkEntityIdMatch(qualification, id);
-        if (!employeeRepository.existsById(id)){
+        if (!qualificationRepository.existsById(id)){
             throw new EntityNotFoundException();
         }
         Qualification updatedQualification = updateQualification(qualification, id);
@@ -63,7 +63,7 @@ public class QualificationServiceImpl implements QualificationService {
     }
 
     @Override
-    public Iterable<Qualification> getEntities() {
+    public List<Qualification> findAll() {
         return qualificationRepository.findAll();
     }
 

@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEntity(Long id) {
-        return employeeRepository.getOne(id);
+        return employeeRepository.findEmployeeById(id);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Iterable<Employee> getEntities() {
+    public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
 
