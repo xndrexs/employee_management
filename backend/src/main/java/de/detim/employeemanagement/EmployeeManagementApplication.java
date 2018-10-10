@@ -28,9 +28,9 @@ public class EmployeeManagementApplication {
             service.createEntity(new Employee("Patrick", "Notar"));
             service.createEntity(new Employee("Fabian", "Junkert"));
 
-            service.addQualification(service.findEntity((long)1), new Qualification("C#"));
-            service.addQualification(service.findEntity((long)2), new Qualification("C++"));
-            service.addQualification(service.findEntity((long)3), new Qualification("Python"));
+            service.addQualification(service.findEntity(1L), new Qualification("C#"));
+            service.addQualification(service.findEntity(2L), new Qualification("C++"));
+            service.addQualification(service.findEntity(3L), new Qualification("Python"));
         };
     }
 

@@ -4,37 +4,38 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/employees")
 @RestController
 public class EmployeeController {
 
-    private EmployeeService service;
+    private EmployeeService employeeService;
 
     public EmployeeController(EmployeeService service) {
-        this.service = service;
+        this.employeeService = service;
     }
 
-    @GetMapping("/employees")
-    public List<Employee> listEmployees(){
-        return service.getEntities();
+    @GetMapping("/")
+    public List<Employee> findAll(){
+        return employeeService.findAll();
     }
 
-    @GetMapping("/employees/{id}")
-    public Employee getEmployee(@PathVariable Long id){
-        return service.findEntity(id);
+    @GetMapping("/{id}")
+    public Employee findEntity(@PathVariable Long id){
+        return employeeService.findEntity(id);
     }
 
-    @PostMapping("/employees")
-    public Employee newEmployee(@RequestBody Employee newEmployee){
-        return service.createEntity(newEmployee);
+    @PostMapping("/")
+    public Employee createEntity(@RequestBody Employee newEmployee){
+        return employeeService.createEntity(newEmployee);
     }
 
-    @PutMapping("/employees/{id}")
-    public Employee editEmployee(@RequestBody Employee employee, @PathVariable Long id){
-        return service.updateEntity(employee, id);
+    @PutMapping("/{id}")
+    public Employee updateEntity(@RequestBody Employee employee, @PathVariable Long id){
+        return employeeService.updateEntity(employee, id);
     }
 
-    @DeleteMapping("employees/{id}")
-    public Long deleteEmployee(@PathVariable Long id){
-        return service.deleteEntityById(id);
+    @DeleteMapping("/{id}")
+    public Long deleteEntity(@PathVariable Long id){
+        return employeeService.deleteEntityById(id);
     }
 }

@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEntities() {
+    public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
 

@@ -55,7 +55,7 @@ public interface ServiceEntity<T extends BaseEntity> {
      * Returns all entities
      * @return An iterable of entities found
      */
-    List<T> getEntities();
+    List<T> findAll();
 
     /**
      * Counts the entities

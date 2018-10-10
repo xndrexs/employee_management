@@ -63,7 +63,7 @@ public class QualificationServiceImpl implements QualificationService {
     }
 
     @Override
-    public List<Qualification> getEntities() {
+    public List<Qualification> findAll() {
         return qualificationRepository.findAll();
     }
 
