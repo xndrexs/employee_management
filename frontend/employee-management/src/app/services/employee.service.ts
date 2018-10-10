@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee';
-import { EMPLOYEES } from '../employees/employees';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EmployeeService {
-  private employeesUrl = 'localhost:8083/employees/';
+  private employeesUrl = 'http://localhost:8083/employees/';
   constructor(
     private httpClient: HttpClient
   ) { }

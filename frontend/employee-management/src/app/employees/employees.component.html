@@ -5,7 +5,7 @@
     <li *ngFor="let employee of employees">
       <a routerLink="/employees/{{employee.id}}">
         <div>
-          <span class="badge">{{ employee.id}}</span> {{ employee.name }}
+          <span class="badge">{{ employee.id }}</span> {{ employee.firstName }}
           <button>Delete</button>
         </div>
       </a>

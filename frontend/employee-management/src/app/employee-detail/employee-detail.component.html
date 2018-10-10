@@ -1,9 +1,9 @@
 <div *ngIf="employee">
-  <h2> Mitarbeiter: {{ employee.name }}</h2>
+  <h2> Mitarbeiter: {{ employee.firstName }}</h2>
   <label>
-    <input [(ngModel)]="employee.name" placeholder="Name">
+    <input [(ngModel)]="employee.firstName" placeholder="Name">
   </label>
-  Name: {{ employee.name; employee.lastName }}
+  Name: {{ employee.firstName }} {{ employee.lastName }}
   Position: {{ employee.position }}
   Abschluss: {{ employee.degree }}
   <div>
