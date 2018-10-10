@@ -1,12 +1,7 @@
 package de.detim.employeemanagement.employee;
 
-import de.detim.employeemanagement.employee.Employee;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-
-    List<Employee> findByLastName(String lastName);
-
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    Employee findEmployeeById(Long id);
 }

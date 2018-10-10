@@ -1,10 +1,8 @@
 package de.detim.employeemanagement.employee;
 
-import de.detim.employeemanagement.helper.ModelBase;
+import de.detim.employeemanagement.helper.BaseEntity;
 import de.detim.employeemanagement.qualification.Qualification;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-public class Employee extends ModelBase {
+public class Employee extends BaseEntity {
 
     private String firstName;
     private String lastName;
@@ -22,7 +20,7 @@ public class Employee extends ModelBase {
     private String degree;
     private String position;
 
-    @ManyToMany(targetEntity = Qualification.class)
+    @ManyToMany(targetEntity = Qualification.class, fetch = FetchType.EAGER)
     private List<Qualification> qualifications;
 
     public Employee (String firstName, String lastName) {
