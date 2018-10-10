@@ -19,9 +19,9 @@ public class QualificationController {
         return qualificationService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Qualification findEntity(@PathVariable Long id){
-        return qualificationService.findEntity(id);
+    @GetMapping("/{qualificationId}")
+    public Qualification findEntity(@PathVariable Long qualificationId){
+        return qualificationService.findEntity(qualificationId);
     }
 
     @PostMapping("/")
@@ -29,13 +29,13 @@ public class QualificationController {
         return qualificationService.createEntity(qualification);
     }
 
-    @PutMapping("/{id}")
-    public Qualification updateEntity(@RequestBody Qualification qualification, @PathVariable Long id){
-        return qualificationService.updateEntity(qualification, id);
+    @PutMapping("/{qualificationId}")
+    public Qualification updateEntity(@RequestBody Qualification qualification, @PathVariable Long qualificationId){
+        return qualificationService.updateEntity(qualification, qualificationId);
     }
 
-    @DeleteMapping("/{id}")
-    public Long deleteEntity(@PathVariable Long id) {
-        return qualificationService.deleteEntityById(id);
+    @DeleteMapping("/{qualificationId}")
+    public Long deleteEntity(@PathVariable Long qualificationId) {
+        return qualificationService.deleteEntityById(qualificationId);
     }
 }
