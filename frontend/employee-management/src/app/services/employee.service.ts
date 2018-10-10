@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Employee } from './employees/employee';
-import { EMPLOYEES } from './employees/employees';
+import { Employee } from '../models/employee';
+import { EMPLOYEES } from '../employees/employees';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 
@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private employeesUrl = 'localhost:8083/employees';
+  private employeesUrl = 'localhost:8083/employees/';
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -16,6 +16,6 @@ export class EmployeeService {
     return this.httpClient.get<Employee[]>(this.employeesUrl);
   }
   getEmployee(id: number): Observable<Employee> {
-    return of(EMPLOYEES.find(employee => employee.id === id));
+    return this.httpClient.get<Employee>(this.employeesUrl + id);
   }
 }
