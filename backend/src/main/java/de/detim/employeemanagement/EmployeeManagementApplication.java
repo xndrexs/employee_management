@@ -11,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
+
 @Slf4j
 @SpringBootApplication
 public class EmployeeManagementApplication {
@@ -25,7 +27,7 @@ public class EmployeeManagementApplication {
             /*
             Testdaten für Mitarbeiter erstellen
             */
-            employeeService.createEntity(new Employee("Andreas", "Pöhler"));
+            employeeService.createEntity(new Employee("Andreas", "Pöhler", "German", "Praktikant", "Bachelor", new ArrayList<>()));
             employeeService.createEntity(new Employee("Patrick", "Notar"));
             employeeService.createEntity(new Employee("Fabian", "Junkert"));
 
@@ -34,13 +36,10 @@ public class EmployeeManagementApplication {
             qualificationService.createEntity(new Qualification("MySQL"));
             qualificationService.createEntity(new Qualification("Scrum"));
 
-            Employee entity = employeeService.findEntity(1L);
-            entity.setPosition("Praktikant");
-            entity.setCitizenship("German");
-            entity.setDegree("Bachelor");
-            employeeService.addQualification(entity, qualificationService.findEntityByName("Java"));
-            employeeService.addQualification(entity, qualificationService.findEntityByName("Angular"));
-            employeeService.addQualification(entity, qualificationService.findEntityByName("MySQL"));
+            employeeService.addQualification(employeeService.findEntity(1L), qualificationService.findEntityByName("Java"));
+            employeeService.addQualification(employeeService.findEntity(1L), qualificationService.findEntityByName("Angular"));
+            employeeService.addQualification(employeeService.findEntity(1L), qualificationService.createEntity(new Qualification("C#")));
+            employeeService.addQualification(employeeService.findEntity(1L), qualificationService.createEntity(new Qualification("Swift")));
         };
     }
 }

@@ -86,8 +86,6 @@ public class QualificationServiceImpl implements QualificationService {
     @Override
     public Qualification addEmployee(Qualification qualification, Employee employee) {
         addEmployeeToQualification(qualification, employee);
-        qualificationRepository.save(qualification);
-        employeeRepository.save(employee);
         log.info("Qualification '{}' added to {}.", employee.getLastName(), qualification.getName());
         return qualification;
     }
@@ -100,6 +98,8 @@ public class QualificationServiceImpl implements QualificationService {
     private void addEmployeeToQualification(Qualification qualification, Employee employee) {
         qualification.getEmployees().add(employee);
         employee.getQualifications().add(qualification);
+        qualificationRepository.save(qualification);
+        employeeRepository.save(employee);
     }
 
     /**
