@@ -1,4 +1,4 @@
-<div class="profile" *ngIf="employee">
+<div *ngIf="employee">
   <div><h1>{{ employee.firstName }} {{ employee.lastName }}</h1></div>
   <div><span>Position:</span> {{ employee.position }}</div>
   <div><span>Abschluss:</span> {{ employee.degree }}</div>
@@ -11,7 +11,7 @@
       </li>
     </ul>
   </div>
-  <p><button (click)="goBack()">Zurück</button><button>Edit</button></p>
+  <p><button class="btn" (click)="goBack()">Zurück</button><button class="btn btn-primary">Edit</button></p>
   <button class="btn btn-danger"><i class="la la-trash"></i></button>
 </div>
 
