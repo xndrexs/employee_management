@@ -6,5 +6,6 @@ export class Employee {
   lastName: string;
   position: string;
   degree: string;
+  citizenship: string;
   qualifications: Qualification[];
 }

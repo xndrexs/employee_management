@@ -1,29 +1,17 @@
-<div class="container" *ngIf="employee">
-  <h2> Mitarbeiter: {{ employee.firstName }}</h2>
-  <label>
-    <input [(ngModel)]="employee.firstName" placeholder="Name">
-  </label>
-  <table>
-    <tr>
-      <td>Name:</td>
-      <td>{{ employee.firstName }} {{ employee.lastName }}</td>
-    </tr>
-    <tr>
-      <td>Position:</td>
-      <td>{{ employee.position }}</td>
-    </tr>
-    <tr>
-      <td>Abschluss:</td>
-      <td>{{ employee.degree }}</td>
-    </tr>
-  </table>
-  <div>
-    <ul class="employee">
+<div>
+  <div><h1>{{ employee.firstName }} {{ employee.lastName }}</h1></div>
+  <div><span>Position:</span> {{ employee.position }}</div>
+  <div><span>Abschluss:</span> {{ employee.degree }}</div>
+  <div><span>Nationalität:</span> {{ employee.citizenship }}</div>
+  <div *ngIf="employee.qualifications.length > 0">
+    <div><h2>Qualifikationen</h2></div>
+    <ul>
       <li *ngFor="let qualification of employee.qualifications">
         {{ qualification.name }}
       </li>
     </ul>
   </div>
-  <br>
-  <button (click)="goBack()">Zurück</button>
+  <p><button (click)="goBack()">Zurück</button><button>Edit</button></p>
 </div>
+
+

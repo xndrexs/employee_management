@@ -1,6 +1,17 @@
-.employee {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
+span {
+  width: 100px;
+  display: inline-block;
+}
+
+div {
+  margin: 5px;
+}
+
+li {
+  list-style: none;
+  margin: 5px;
+}
+
+button {
+  margin: 5px;
 }
