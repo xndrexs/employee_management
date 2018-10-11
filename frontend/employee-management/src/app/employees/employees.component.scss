@@ -1,24 +1,8 @@
-.employees {
-  list-style: none;
-  padding: 5px;
+.card {
+  transition: 330ms;
+  &:hover {
+    background: lightgrey;
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 }
-
-li {
-  margin: 10px;
-  padding: 5px;
-}
-
-a {
-  margin: 10px;
-  background: black;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.list {
-  background: grey;
-  color: white;
-  padding: 5px;
-}
-
