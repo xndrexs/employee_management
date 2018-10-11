@@ -1,15 +1,26 @@
-<div *ngIf="employee">
+<div class="container" *ngIf="employee">
   <h2> Mitarbeiter: {{ employee.firstName }}</h2>
   <label>
     <input [(ngModel)]="employee.firstName" placeholder="Name">
   </label>
-  Name: {{ employee.firstName }} {{ employee.lastName }}
-  Position: {{ employee.position }}
-  Abschluss: {{ employee.degree }}
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+    </tr>
+    <tr>
+      <td>Position:</td>
+      <td>{{ employee.position }}</td>
+    </tr>
+    <tr>
+      <td>Abschluss:</td>
+      <td>{{ employee.degree }}</td>
+    </tr>
+  </table>
   <div>
-    <ul>
+    <ul class="employee">
       <li *ngFor="let qualification of employee.qualifications">
-        {{ qualification }}
+        {{ qualification.name }}
       </li>
     </ul>
   </div>
