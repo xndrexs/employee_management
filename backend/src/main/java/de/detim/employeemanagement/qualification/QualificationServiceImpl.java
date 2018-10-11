@@ -35,6 +35,11 @@ public class QualificationServiceImpl implements QualificationService {
     }
 
     @Override
+    public Qualification findEntityByName(String name) {
+        return qualificationRepository.findQualificationByName(name);
+    }
+
+    @Override
     public Qualification updateEntity(Qualification qualification, Long id) {
         checkEntityNotNull(qualification);
         checkEntityIdMatch(qualification, id);
@@ -83,7 +88,7 @@ public class QualificationServiceImpl implements QualificationService {
         addEmployeeToQualification(qualification, employee);
         qualificationRepository.save(qualification);
         employeeRepository.save(employee);
-        log.info("Employee '{}' added to {}.", employee.getLastName(), qualification.getName());
+        log.info("Qualification '{}' added to {}.", employee.getLastName(), qualification.getName());
         return qualification;
     }
 
@@ -93,16 +98,8 @@ public class QualificationServiceImpl implements QualificationService {
      * @param employee
      */
     private void addEmployeeToQualification(Qualification qualification, Employee employee) {
-        List<Employee> employeeList = qualification.getEmployees();
-        employeeList.add(employee);
-        qualification.setEmployees(employeeList);
-
-        List<Qualification> qualificationList = employee.getQualifications();
-        qualificationList.add(qualification);
-        employee.setQualifications(qualificationList);
-
-        qualificationRepository.save(qualification);
-        employeeRepository.save(employee);
+        qualification.getEmployees().add(employee);
+        employee.getQualifications().add(qualification);
     }
 
     /**
@@ -115,6 +112,7 @@ public class QualificationServiceImpl implements QualificationService {
         Qualification updatedQualification = qualificationRepository.findQualificationById(id);
         updatedQualification.setName(qualification.getName());
         updatedQualification.setEmployees(new ArrayList<>(qualification.getEmployees()));
+        qualificationRepository.save(qualification);
         return updatedQualification;
     }
 }

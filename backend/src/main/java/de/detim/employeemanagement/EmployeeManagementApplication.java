@@ -2,6 +2,7 @@ package de.detim.employeemanagement;
 
 import de.detim.employeemanagement.employee.Employee;
 import de.detim.employeemanagement.employee.EmployeeService;
+import de.detim.employeemanagement.helper.BaseEntity;
 import de.detim.employeemanagement.qualification.Qualification;
 import de.detim.employeemanagement.qualification.QualificationService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,32 +19,28 @@ public class EmployeeManagementApplication {
         SpringApplication.run(EmployeeManagementApplication.class, args);
     }
 
-    /*
-    Testdaten für Mitarbeiter erstellen
-    */
     @Bean
-    public CommandLineRunner createDummyEmployees (EmployeeService service) {
+    public CommandLineRunner createDummyEntities(EmployeeService employeeService, QualificationService qualificationService) {
         return (args) -> {
-            service.createEntity(new Employee("Andreas", "Pöhler"));
-            service.createEntity(new Employee("Patrick", "Notar"));
-            service.createEntity(new Employee("Fabian", "Junkert"));
+            /*
+            Testdaten für Mitarbeiter erstellen
+            */
+            employeeService.createEntity(new Employee("Andreas", "Pöhler"));
+            employeeService.createEntity(new Employee("Patrick", "Notar"));
+            employeeService.createEntity(new Employee("Fabian", "Junkert"));
 
-            service.addQualification(service.findEntity(1L), new Qualification("C#"));
-            service.addQualification(service.findEntity(2L), new Qualification("C++"));
-            service.addQualification(service.findEntity(3L), new Qualification("Python"));
-        };
-    }
+            qualificationService.createEntity(new Qualification("Java"));
+            qualificationService.createEntity(new Qualification("Angular"));
+            qualificationService.createEntity(new Qualification("MySQL"));
+            qualificationService.createEntity(new Qualification("Scrum"));
 
-    /*
-    Testdaten für Qualifikationen erstellen
-    */
-    @Bean
-    public CommandLineRunner createDummyQualifications (QualificationService service) {
-        return (args) -> {
-            service.createEntity(new Qualification("Java"));
-            service.createEntity(new Qualification("Angular"));
-            service.createEntity(new Qualification("MySQL"));
-            service.createEntity(new Qualification("Scrum"));
+            Employee entity = employeeService.findEntity(1L);
+            entity.setPosition("Praktikant");
+            entity.setCitizenship("German");
+            entity.setDegree("Bachelor");
+            employeeService.addQualification(entity, qualificationService.findEntityByName("Java"));
+            employeeService.addQualification(entity, qualificationService.findEntityByName("Angular"));
+            employeeService.addQualification(entity, qualificationService.findEntityByName("MySQL"));
         };
     }
 }

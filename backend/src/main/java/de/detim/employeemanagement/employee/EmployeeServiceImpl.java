@@ -35,6 +35,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee findEntityByName(String name) {
+        return employeeRepository.findEmployeeByLastName(name);
+    }
+
+    @Override
     public Employee updateEntity(Employee employee, Long id) {
         checkEntityNotNull(employee);
         checkEntityIdMatch(employee, id);
@@ -99,6 +104,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         updatedEmployee.setDegree(employee.getDegree());
         updatedEmployee.setPosition(employee.getPosition());
         updatedEmployee.setQualifications(new ArrayList<>(employee.getQualifications()));
+        employeeRepository.save(updatedEmployee);
         return updatedEmployee;
     }
 
@@ -108,15 +114,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param employee
      */
     private void addQualificationToEmployee(Qualification qualification, Employee employee) {
-        List<Qualification> qualificationList = employee.getQualifications();
-        qualificationList.add(qualification);
-        employee.setQualifications(qualificationList);
-
-        List<Employee> employeeList = qualification.getEmployees();
-        employeeList.add(employee);
-        qualification.setEmployees(employeeList);
-
-        qualificationRepository.save(qualification);
+        employee.getQualifications().add(qualification);
+        qualification.getEmployees().add(employee);
         employeeRepository.save(employee);
+        qualificationRepository.save(qualification);
     }
 }
