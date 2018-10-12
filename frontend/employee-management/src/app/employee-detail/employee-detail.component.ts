@@ -3,6 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Location} from '@angular/common';
 import { Employee} from '../models/employee';
 import { EmployeeService} from '../services/employee.service';
+import {Qualification} from "../models/qualification";
 
 @Component({
   selector: 'app-employee-detail',
@@ -18,6 +19,9 @@ export class EmployeeDetailComponent implements OnInit {
   }
   goBack(): void {
     this.location.back();
+  }
+  getQualifications(): Qualification[] {
+    return this.employee.qualifications;
   }
   constructor(
     private service: EmployeeService,

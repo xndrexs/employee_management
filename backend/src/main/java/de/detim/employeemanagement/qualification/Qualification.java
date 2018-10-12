@@ -19,6 +19,7 @@ import java.util.List;
 public class Qualification extends BaseEntity {
 
     private String name;
+    private String img;
 
     @ManyToMany(targetEntity = Employee.class, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("qualifications")
