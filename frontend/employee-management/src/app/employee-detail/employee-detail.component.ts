@@ -3,7 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Location} from '@angular/common';
 import { Employee} from '../models/employee';
 import { EmployeeService} from '../services/employee.service';
-import {Qualification} from "../models/qualification";
+import {Qualification} from '../models/qualification';
 
 @Component({
   selector: 'app-employee-detail',

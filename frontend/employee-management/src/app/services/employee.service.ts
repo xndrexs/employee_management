@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {AppConfig} from '../app-config';
+import { AppConfig } from '../app-config';
 
 @Injectable()
 export class EmployeeService {
