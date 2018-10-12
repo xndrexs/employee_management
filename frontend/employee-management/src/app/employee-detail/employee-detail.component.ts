@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { Location} from '@angular/common';
-import { Employee} from '../models/employee';
-import { EmployeeService} from '../services/employee.service';
-import {Qualification} from '../models/qualification';
+import { Location } from '@angular/common';
+import { Employee } from '../models/employee';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-employee-detail',
@@ -13,15 +12,16 @@ import {Qualification} from '../models/qualification';
 
 export class EmployeeDetailComponent implements OnInit {
   @Input() employee: Employee;
+  id: number;
   getEmployee(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.service.getEmployee(id).subscribe(employee => this.employee = employee);
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.service.getEmployee(this.id).subscribe(employee => this.employee = employee);
   }
   goBack(): void {
     this.location.back();
   }
-  getQualifications(): Qualification[] {
-    return this.employee.qualifications;
+  deleteEmployee(): void {
+    this.service.deleteEmployee(this.id).subscribe();
   }
   constructor(
     private service: EmployeeService,

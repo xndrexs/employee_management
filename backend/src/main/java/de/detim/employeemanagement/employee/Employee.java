@@ -1,8 +1,6 @@
 package de.detim.employeemanagement.employee;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.detim.employeemanagement.helper.BaseEntity;
 import de.detim.employeemanagement.qualification.Qualification;
 import lombok.*;

@@ -1,32 +1,33 @@
+<h1 class="mb-3">{{ employee.id ? 'Bearbeiten' : 'Neu' }}</h1>
 <form>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Vorname</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Vorname" [(ngModel)]="name">
+      <input type="text" class="form-control" placeholder="Vorname" [(ngModel)]="employee.firstName" name="firstName">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Nachname</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Nachname" [(ngModel)]="lastName">
+      <input type="text" class="form-control" placeholder="Nachname" [(ngModel)]="employee.lastName" name="lastName">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Position</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Position" [(ngModel)]="position">
+      <input type="text" class="form-control" placeholder="Position" [(ngModel)]="employee.position" name="position">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Abschluss</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Abschluss" [(ngModel)]="degree">
+      <input type="text" class="form-control" placeholder="Abschluss" [(ngModel)]="employee.degree" name="degree">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Nationalität</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Nationalität" [(ngModel)]="citizensip">
+      <input type="text" class="form-control" placeholder="Nationalität" [(ngModel)]="employee.citizenship" name="citizenship">
     </div>
   </div>
   <ng-container *ngIf="qualifications">
@@ -35,7 +36,7 @@
       <ng-container *ngFor="let qualification of qualifications">
         <div class="col-sm-10 offset-sm-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="{{ qualification.id }}">
+            <input class="form-check-input" type="checkbox" id="{{ qualification.id }}" name="newQualifications">
             <label class="form-check-label" for="{{ qualification.id }}">
               {{ qualification.name }}
             </label>
@@ -47,7 +48,13 @@
   <div class="form-group row">
     <div class="col-sm-10">
       <button class="btn btn-danger" routerLink="/"><i class="la la-times-circle-o"></i></button>
-      <button type="submit" class="btn btn-primary"><i class="la la-check-circle"></i></button>
+      <div *ngIf="employee.id; then put else post"></div>
+      <ng-template #post>
+        <button type="submit" class="btn btn-primary" (click)="postEmployee()" routerLink="/employees"><i class="la la-check-circle"></i></button>
+      </ng-template>
+      <ng-template #put>
+        <button type="submit" class="btn btn-primary" (click)="putEmployee()" routerLink="/employees"><i class="la la-check-circle"></i></button>
+      </ng-template>
     </div>
   </div>
 </form>
