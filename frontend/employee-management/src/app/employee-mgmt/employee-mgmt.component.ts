@@ -12,20 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EmployeeMgmtComponent implements OnInit {
   id: number;
-  employees: Employee[];
   qualifications: Qualification[];
   employee = new Employee();
   getQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => this.qualifications = qualifications);
   }
-  getEmployees(): void {
-    this.employeeService.getEmployees().subscribe(employees => this.employees = employees);
-  }
-  postEmployee(): void {
-    this.employeeService.postEmployee(this.employee).subscribe(employee => this.employees.push(employee));
-  }
-  putEmployee(): void {
-    this.employeeService.putEmployee(this.employee, this.employee.id).subscribe(employee => this.employees.push(employee));
+  onSubmit(): void {
+    if (!this.employee.id) {
+      this.employeeService.postEmployee(this.employee).subscribe(() => {
+      });
+    } else {
+      this.employeeService.putEmployee(this.employee, this.employee.id).subscribe(() => {
+      });
+    }
   }
   getEmployee(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -39,7 +38,6 @@ export class EmployeeMgmtComponent implements OnInit {
 
   ngOnInit() {
     this.getQualifications();
-    this.getEmployees();
     this.getEmployee();
   }
 }

@@ -48,13 +48,7 @@
   <div class="form-group row">
     <div class="col-sm-10">
       <button class="btn btn-danger" routerLink="/"><i class="la la-times-circle-o"></i></button>
-      <div *ngIf="employee.id; then put else post"></div>
-      <ng-template #post>
-        <button type="submit" class="btn btn-primary" (click)="postEmployee()" routerLink="/employees"><i class="la la-check-circle"></i></button>
-      </ng-template>
-      <ng-template #put>
-        <button type="submit" class="btn btn-primary" (click)="putEmployee()" routerLink="/employees"><i class="la la-check-circle"></i></button>
-      </ng-template>
+      <button type="submit" class="btn btn-primary" (ngSubmit)="onSubmit()"><i class="la la-check-circle"></i></button>
     </div>
   </div>
 </form>
