@@ -27,7 +27,7 @@ export class EmployeeService {
     return this.httpClient.post<Employee>(AppConfig.getUrl(this.employeesUrl), employee, httpOptions);
   }
   putEmployee(employee: Employee, id: number): Observable<Employee> {
-    return this.httpClient.put<Employee>(AppConfig.getUrl(this.employeesUrl + id), this.employeesUrl, httpOptions);
+    return this.httpClient.put<Employee>(AppConfig.getUrl(this.employeesUrl + id), employee, httpOptions);
   }
   deleteEmployee(id: number): Observable<number> {
     return this.httpClient.delete<number>(AppConfig.getUrl(this.employeesUrl) + id);

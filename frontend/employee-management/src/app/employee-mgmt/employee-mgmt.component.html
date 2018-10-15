@@ -1,5 +1,5 @@
 <h1 class="mb-3">{{ employee.id ? 'Bearbeiten' : 'Neu' }}</h1>
-<form>
+<form (ngSubmit)="onSubmit()">
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Vorname</label>
     <div class="col-sm-10">
@@ -36,7 +36,10 @@
       <ng-container *ngFor="let qualification of qualifications">
         <div class="col-sm-10 offset-sm-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="{{ qualification.id }}" name="newQualifications">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="{{ qualification.id }}"
+                   name="newQualifications" [(ngModel)]="employee.qualifications[qualification.id]">
             <label class="form-check-label" for="{{ qualification.id }}">
               {{ qualification.name }}
             </label>
@@ -48,7 +51,7 @@
   <div class="form-group row">
     <div class="col-sm-10">
       <button class="btn btn-danger" routerLink="/"><i class="la la-times-circle-o"></i></button>
-      <button type="submit" class="btn btn-primary" (ngSubmit)="onSubmit()"><i class="la la-check-circle"></i></button>
+      <button type="submit" class="btn btn-primary"><i class="la la-check-circle"></i></button>
     </div>
   </div>
 </form>

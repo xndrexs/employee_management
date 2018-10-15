@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { Location } from '@angular/common';
 import { Employee } from '../models/employee';
 import { EmployeeService } from '../services/employee.service';
@@ -21,12 +21,15 @@ export class EmployeeDetailComponent implements OnInit {
     this.location.back();
   }
   deleteEmployee(): void {
-    this.service.deleteEmployee(this.id).subscribe();
+    this.service.deleteEmployee(this.id).subscribe(() => {
+      return this.router.navigate(['/employees']);
+    });
   }
   constructor(
     private service: EmployeeService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
