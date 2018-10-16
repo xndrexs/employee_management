@@ -66,6 +66,7 @@
                    type="checkbox"
                    id="{{ qualification }}"
                    name="{{ qualification }}"
+                   [(ngModel)] = "qualification.selected"
                    (click)="select(qualification)">
             <label class="form-check-label" for="{{ qualification }}">
               {{ qualification.name }}

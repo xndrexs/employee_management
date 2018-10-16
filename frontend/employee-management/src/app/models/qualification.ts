@@ -5,4 +5,5 @@ export class Qualification {
   name: string;
   img: string;
   employees: Employee[];
+  selected = false;
 }
