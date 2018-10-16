@@ -16,8 +16,8 @@ export class EmployeeMgmtNewComponent implements OnInit {
   getQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => {
       this.qualifications = qualifications;
-      this.qualifications.forEach(function (value) {
-        value.selected = false;
+      this.qualifications.forEach(function (qualification) {
+        qualification.selected = false;
       });
     });
   }
