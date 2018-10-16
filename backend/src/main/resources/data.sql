@@ -23,8 +23,3 @@ INSERT INTO employeedb.employee_qualifications (employee_id, qualifications_id) 
 INSERT INTO employeedb.employee_qualifications (employee_id, qualifications_id) VALUES (1, 3);
 INSERT INTO employeedb.employee_qualifications (employee_id, qualifications_id) VALUES (1, 8);
 INSERT INTO employeedb.employee_qualifications (employee_id, qualifications_id) VALUES (1, 7);
-
-INSERT INTO employeedb.qualification_employees (qualification_id, employees_id) VALUES (1, 1);
-INSERT INTO employeedb.qualification_employees (qualification_id, employees_id) VALUES (2, 1);
-INSERT INTO employeedb.qualification_employees (qualification_id, employees_id) VALUES (5, 1);
-INSERT INTO employeedb.qualification_employees (qualification_id, employees_id) VALUES (6, 1);

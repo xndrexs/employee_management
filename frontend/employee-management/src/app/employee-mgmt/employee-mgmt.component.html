@@ -1,33 +1,59 @@
 <h1 class="mb-3">{{ employee.id ? 'Bearbeiten' : 'Neu' }}</h1>
-<form (ngSubmit)="onSubmit()">
+{{diagnostic}}
+<form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Vorname</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Vorname" [(ngModel)]="employee.firstName" name="firstName">
+      <input type="text"
+             class="form-control"
+             placeholder="Vorname"
+             [(ngModel)]="employee.firstName"
+             name="firstName"
+             required>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Nachname</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Nachname" [(ngModel)]="employee.lastName" name="lastName">
+      <input type="text"
+             class="form-control"
+             placeholder="Nachname"
+             [(ngModel)]="employee.lastName"
+             name="lastName"
+             required>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Position</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Position" [(ngModel)]="employee.position" name="position">
+      <input type="text"
+             class="form-control"
+             placeholder="Position"
+             [(ngModel)]="employee.position"
+             name="position"
+             required>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Abschluss</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Abschluss" [(ngModel)]="employee.degree" name="degree">
+      <input type="text"
+             class="form-control"
+             placeholder="Abschluss"
+             [(ngModel)]="employee.degree"
+             name="degree"
+             required>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Nationalität</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Nationalität" [(ngModel)]="employee.citizenship" name="citizenship">
+      <input type="text"
+             class="form-control"
+             placeholder="Nationalität"
+             [(ngModel)]="employee.citizenship"
+             name="citizenship"
+             required>
     </div>
   </div>
   <ng-container *ngIf="qualifications">
@@ -38,9 +64,11 @@
           <div class="form-check">
             <input class="form-check-input"
                    type="checkbox"
-                   id="{{ qualification.id }}"
-                   name="newQualifications" [(ngModel)]="employee.qualifications[qualification.id]">
-            <label class="form-check-label" for="{{ qualification.id }}">
+                   id="{{ qualification }}"
+                   name="{{ qualification }}"
+                   ngModel
+                    (click)="select(qualification)">
+            <label class="form-check-label" for="{{ qualification }}">
               {{ qualification.name }}
             </label>
           </div>
@@ -51,7 +79,9 @@
   <div class="form-group row">
     <div class="col-sm-10">
       <button class="btn btn-danger" routerLink="/"><i class="la la-times-circle-o"></i></button>
-      <button type="submit" class="btn btn-primary"><i class="la la-check-circle"></i></button>
+      <button type="submit" class="btn btn-primary" [disabled]="!employeeForm.form.valid"><i class="la la-check-circle"></i></button>
     </div>
   </div>
+  {{ employeeForm.name}}
 </form>
+

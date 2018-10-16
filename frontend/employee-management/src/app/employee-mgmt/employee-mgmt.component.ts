@@ -3,7 +3,8 @@ import { Qualification } from '../models/qualification';
 import { QualificationService } from '../services/qualification.service';
 import { EmployeeService } from '../services/employee.service';
 import { Employee } from '../models/employee';
-import {ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-mgmt',
@@ -17,7 +18,13 @@ export class EmployeeMgmtComponent implements OnInit {
   getQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => this.qualifications = qualifications);
   }
-  onSubmit(): void {
+  // TODO: Remove this when we're done
+  get diagnostic() { return JSON.stringify(this.employee); }
+  select(qualification: Qualification) {
+    console.log(qualification.name)
+    this.employee.qualifications.push(qualification);
+  }
+  onSubmit() {
     if (!this.employee.id) {
       this.employeeService.postEmployee(this.employee).subscribe(() => {
         return this.router.navigate(['/employees']);
@@ -38,7 +45,7 @@ export class EmployeeMgmtComponent implements OnInit {
     private qualificationService: QualificationService,
     private employeeService: EmployeeService,
     private route: ActivatedRoute,
-  private router: Router
+    private router: Router
   ) { }
 
   ngOnInit() {
