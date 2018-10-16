@@ -4,42 +4,32 @@ import { QualificationService } from '../services/qualification.service';
 import { EmployeeService } from '../services/employee.service';
 import { Employee } from '../models/employee';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-employee-mgmt',
+  selector: 'app-employee-mgmt-new',
   templateUrl: './employee-mgmt.component.html',
   styleUrls: ['./employee-mgmt.component.scss']
 })
-export class EmployeeMgmtComponent implements OnInit {
-  id: number;
+export class EmployeeMgmtNewComponent implements OnInit {
   qualifications: Qualification[];
-  employee = new Employee();
+  employee: Employee;
   getQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => this.qualifications = qualifications);
   }
   // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.employee); }
-  select(qualification: Qualification) {
-    console.log(qualification.name)
-    this.employee.qualifications.push(qualification);
+  get diagnostic() {
+    return JSON.stringify(this.employee);
+  }
+  select(qualification: Qualification, checked: Boolean) {
+    console.log(qualification.name);
+    if (checked) {
+      this.employee.qualifications.push(qualification);
+    }
   }
   onSubmit() {
-    if (!this.employee.id) {
-      this.employeeService.postEmployee(this.employee).subscribe(() => {
-        return this.router.navigate(['/employees']);
-      });
-    } else {
-      this.employeeService.putEmployee(this.employee, this.employee.id).subscribe(() => {
-        return this.router.navigate(['/employees']);
-      });
-    }
-  }
-  getEmployee(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    if (this.id) {
-      this.employeeService.getEmployee(this.id).subscribe(employee => this.employee = employee);
-    }
+    this.employeeService.postEmployee(this.employee).subscribe(() => {
+      return this.router.navigate(['/employees']);
+    });
   }
   constructor(
     private qualificationService: QualificationService,
@@ -50,6 +40,7 @@ export class EmployeeMgmtComponent implements OnInit {
 
   ngOnInit() {
     this.getQualifications();
-    this.getEmployee();
+    this.employee = new Employee();
+    this.employee.qualifications = [];
   }
 }

@@ -8,15 +8,17 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { HttpClientModule} from '@angular/common/http';
 import { EmployeeService} from './services/employee.service';
-import { EmployeeMgmtComponent } from './employee-mgmt/employee-mgmt.component';
+import { EmployeeMgmtNewComponent } from './employee-mgmt/employee-mgmt-new.component';
 import { QualificationService } from './services/qualification.service';
+import { EmployeeMgmtEditComponent } from './employee-mgmt/employee-mgmt-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
     EmployeeDetailComponent,
-    EmployeeMgmtComponent
+    EmployeeMgmtNewComponent,
+    EmployeeMgmtEditComponent
   ],
   imports: [
     BrowserModule,
