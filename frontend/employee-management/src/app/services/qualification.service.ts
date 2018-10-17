@@ -6,11 +6,15 @@ import { Qualification } from '../models/qualification';
 
 @Injectable()
 export class QualificationService {
+
   private qualificationsUrl = 'qualifications/';
+  private url = AppConfig.getUrl(this.qualificationsUrl);
+
   constructor(
     private httpClient: HttpClient
   ) { }
+
   getQualifications(): Observable<Qualification[]> {
-    return this.httpClient.get<Qualification[]>(AppConfig.getUrl(this.qualificationsUrl));
+    return this.httpClient.get(this.url) as Observable<Qualification[]>;
   }
 }

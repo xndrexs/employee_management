@@ -15,7 +15,19 @@ export class EmployeeMgmtNewComponent implements OnInit {
   qualifications: Qualification[];
   employee: Employee;
 
-  getQualifications(): void {
+  constructor(
+    private qualificationService: QualificationService,
+    private employeeService: EmployeeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    this.initQualifications();
+    this.employee = new Employee();
+  }
+
+  initQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => {
       this.qualifications = qualifications;
       this.qualifications.forEach(function (qualification) {
@@ -36,18 +48,5 @@ export class EmployeeMgmtNewComponent implements OnInit {
     this.employeeService.postEmployee(this.employee).subscribe(() => {
       return this.router.navigate(['/employees']);
     });
-  }
-
-  constructor(
-    private qualificationService: QualificationService,
-    private employeeService: EmployeeService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
-
-  ngOnInit() {
-    this.getQualifications();
-    this.employee = new Employee();
-    this.employee.qualifications = [];
   }
 }

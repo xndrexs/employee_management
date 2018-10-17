@@ -4,7 +4,6 @@ import { QualificationService } from '../services/qualification.service';
 import { EmployeeService } from '../services/employee.service';
 import { Employee } from '../models/employee';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-mgmt',
@@ -18,14 +17,30 @@ export class EmployeeMgmtEditComponent implements OnInit {
   qualifications: Qualification[];
   employee = new Employee();
 
-  getQualifications(): void {
+  constructor(
+    private qualificationService: QualificationService,
+    private employeeService: EmployeeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    this.initEmployee();
+    this.initQualifications();
+  }
+
+  initQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => {
       this.qualifications = qualifications;
       this.qualifications.forEach((qualification) => {
-        const index  = this.employee.qualifications.findIndex(q => qualification.id === q.id );
-        qualification.selected = index > -1;
+        this.setQualificationCheckbox(qualification);
       });
     });
+  }
+
+  setQualificationCheckbox(qualification: Qualification): void {
+    const index  = this.employee.qualifications.findIndex(q => qualification.id === q.id );
+    qualification.selected = index > -1;
   }
 
   select(qualification: Qualification) {
@@ -42,20 +57,8 @@ export class EmployeeMgmtEditComponent implements OnInit {
     });
   }
 
-  getEmployee(): void {
+  initEmployee(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.employeeService.getEmployee(this.id).subscribe(employee => this.employee = employee);
-  }
-
-  constructor(
-    private qualificationService: QualificationService,
-    private employeeService: EmployeeService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
-
-  ngOnInit() {
-    this.getEmployee();
-    this.getQualifications();
   }
 }

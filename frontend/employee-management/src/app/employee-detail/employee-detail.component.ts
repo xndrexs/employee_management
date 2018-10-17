@@ -9,22 +9,10 @@ import { EmployeeService } from '../services/employee.service';
   templateUrl: './employee-detail.component.html',
   styleUrls: ['./employee-detail.component.scss']
 })
-
 export class EmployeeDetailComponent implements OnInit {
   @Input() employee: Employee;
   id: number;
-  getEmployee(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.service.getEmployee(this.id).subscribe(employee => this.employee = employee);
-  }
-  goBack(): void {
-    this.location.back();
-  }
-  deleteEmployee(): void {
-    this.service.deleteEmployee(this.id).subscribe(() => {
-      return this.router.navigate(['/employees']);
-    });
-  }
+
   constructor(
     private service: EmployeeService,
     private location: Location,
@@ -33,6 +21,21 @@ export class EmployeeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getEmployee();
+    this.initEmployee();
+  }
+
+  initEmployee(): void {
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.service.getEmployee(this.id).subscribe(employee => this.employee = employee);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  deleteEmployee(): void {
+    this.service.deleteEmployee(this.id).subscribe(() => {
+      return this.router.navigate(['/employees']);
+    });
   }
 }

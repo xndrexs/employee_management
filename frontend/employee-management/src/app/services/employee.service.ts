@@ -6,30 +6,37 @@ import { AppConfig } from '../app-config';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
+    'Content-Type':  'application/json'
   })
 };
 
 @Injectable()
 export class EmployeeService {
+
   private employeesUrl = 'employees/';
+  private url = AppConfig.getUrl(this.employeesUrl);
+
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) { }
+
   getEmployees(): Observable<Employee[]> {
-    return this.httpClient.get<Employee[]>(AppConfig.getUrl(this.employeesUrl));
+    return this.httpClient.get(this.url) as Observable<Employee[]>;
   }
+
   getEmployee(id: number): Observable<Employee> {
-    return this.httpClient.get<Employee>(AppConfig.getUrl(this.employeesUrl) + id);
+    return this.httpClient.get(this.url + id) as Observable<Employee>;
   }
+
   postEmployee(employee: Employee): Observable<Employee> {
-    return this.httpClient.post<Employee>(AppConfig.getUrl(this.employeesUrl), employee, httpOptions);
+    return this.httpClient.post(this.url, employee, httpOptions) as Observable<Employee>;
   }
+
   putEmployee(employee: Employee, id: number): Observable<Employee> {
-    return this.httpClient.put<Employee>(AppConfig.getUrl(this.employeesUrl + id), employee, httpOptions);
+    return this.httpClient.put(this.url + id, employee, httpOptions) as Observable<Employee>;
   }
+
   deleteEmployee(id: number): Observable<number> {
-    return this.httpClient.delete<number>(AppConfig.getUrl(this.employeesUrl) + id);
+    return this.httpClient.delete(this.url + id) as Observable<Number>;
   }
 }
