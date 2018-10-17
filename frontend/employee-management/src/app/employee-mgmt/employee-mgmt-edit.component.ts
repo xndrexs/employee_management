@@ -12,10 +12,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./employee-mgmt.component.scss']
 })
 export class EmployeeMgmtEditComponent implements OnInit {
+
   title = 'Bearbeiten';
   id: number;
   qualifications: Qualification[];
   employee = new Employee();
+
   getQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => {
       this.qualifications = qualifications;
@@ -25,6 +27,7 @@ export class EmployeeMgmtEditComponent implements OnInit {
       });
     });
   }
+
   select(qualification: Qualification) {
     if (!qualification.selected) {
       this.employee.qualifications.push(qualification);
@@ -32,15 +35,18 @@ export class EmployeeMgmtEditComponent implements OnInit {
       this.employee.qualifications = this.employee.qualifications.filter((q) => q.id !== qualification.id);
     }
   }
+
   onSubmit() {
     this.employeeService.putEmployee(this.employee, this.employee.id).subscribe(() => {
       return this.router.navigate(['/employees']);
     });
   }
+
   getEmployee(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.employeeService.getEmployee(this.id).subscribe(employee => this.employee = employee);
   }
+
   constructor(
     private qualificationService: QualificationService,
     private employeeService: EmployeeService,

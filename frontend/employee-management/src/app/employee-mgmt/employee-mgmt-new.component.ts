@@ -14,6 +14,7 @@ export class EmployeeMgmtNewComponent implements OnInit {
   title = 'Neu';
   qualifications: Qualification[];
   employee: Employee;
+
   getQualifications(): void {
     this.qualificationService.getQualifications().subscribe(qualifications => {
       this.qualifications = qualifications;
@@ -22,10 +23,7 @@ export class EmployeeMgmtNewComponent implements OnInit {
       });
     });
   }
-  // TODO: Remove this when we're done
-  get diagnostic() {
-    return JSON.stringify(this.employee);
-  }
+
   select(qualification: Qualification) {
     if (!qualification.selected) {
       this.employee.qualifications.push(qualification);
@@ -33,11 +31,13 @@ export class EmployeeMgmtNewComponent implements OnInit {
       this.employee.qualifications = this.employee.qualifications.filter((q) => qualification.id !== q.id);
     }
   }
+
   onSubmit() {
     this.employeeService.postEmployee(this.employee).subscribe(() => {
       return this.router.navigate(['/employees']);
     });
   }
+
   constructor(
     private qualificationService: QualificationService,
     private employeeService: EmployeeService,

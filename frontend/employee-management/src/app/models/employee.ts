@@ -8,4 +8,8 @@ export class Employee {
   degree: string;
   citizenship: string;
   qualifications: Qualification[];
+
+  constructor() {
+    this.qualifications = [];
+  }
 }
