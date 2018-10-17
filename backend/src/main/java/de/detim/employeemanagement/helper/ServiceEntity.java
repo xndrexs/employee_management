@@ -35,6 +35,20 @@ public interface ServiceEntity<T extends BaseEntity> {
      * @return
      */
     T findEntity(Long id);
+
+    /**
+     * Finding an entity by its name
+     * @param name
+     * @return
+     */
+    T findEntityByName(String name);
+
+    /**
+     * Update an entity
+     * @param t entity with updated values
+     * @param id entity to update
+     * @return
+     */
     T updateEntity(T t, Long id);
 
     /**

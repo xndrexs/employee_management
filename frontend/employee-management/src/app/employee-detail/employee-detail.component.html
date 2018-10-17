@@ -1,0 +1,28 @@
+<div *ngIf="employee">
+  <div class="row">
+    <div class="col-lg-6 mb-3 mt-3">
+      <img class="rounded img-fluid" src="https://picsum.photos/g/300/180/?image={{employee.id * 10}}" alt="ProfilBild">
+    </div>
+    <div class="col-lg-3 mb-3 mt-3">
+      <div><h1>{{ employee.firstName }} {{ employee.lastName }}</h1></div>
+      <div>Position: {{ employee.position }}</div>
+      <div>Abschluss: {{ employee.degree }}</div>
+      <div>Nationalität: {{ employee.citizenship }}</div>
+    </div>
+  </div>
+  <ng-container *ngIf="employee.qualifications.length > 0">
+    <p class="h2 mt-3">Qualifications</p>
+    <div class="row">
+      <ng-container *ngFor="let qualification of employee.qualifications">
+        <div class="col-lg-2 mb-3">
+          <div class="technologies">
+            <img src="{{qualification.img}}">
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <button class="btn" (click)="goBack()"><i class="la la-angle-left"></i></button>
+  <button class="btn btn-primary" routerLink="/employees/{{ employee.id }}/edit"><i class="la la-edit"></i></button>
+  <button class="btn btn-danger" (click)="deleteEmployee()"><i class="la la-trash"></i></button>
+</div>
