@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./employee-mgmt.component.scss']
 })
 export class EmployeeMgmtNewComponent implements OnInit {
+  title = 'Neu';
   qualifications: Qualification[];
   employee: Employee;
   getQualifications(): void {
@@ -26,14 +27,10 @@ export class EmployeeMgmtNewComponent implements OnInit {
     return JSON.stringify(this.employee);
   }
   select(qualification: Qualification) {
-    console.log('Name: ' + qualification.name + ' / Selected: ' + qualification.selected);
     if (!qualification.selected) {
       this.employee.qualifications.push(qualification);
     } else {
-      const pos = this.employee.qualifications.findIndex(qualificationCur => qualification.id === qualificationCur.id );
-      if (pos > -1) {
-        this.employee.qualifications.splice(pos, 1);
-      }
+      this.employee.qualifications = this.employee.qualifications.filter((q) => qualification.id !== q.id);
     }
   }
   onSubmit() {

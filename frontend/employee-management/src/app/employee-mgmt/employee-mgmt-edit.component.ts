@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./employee-mgmt.component.scss']
 })
 export class EmployeeMgmtEditComponent implements OnInit {
+  title = 'Bearbeiten';
   id: number;
   qualifications: Qualification[];
   employee = new Employee();
@@ -20,29 +21,15 @@ export class EmployeeMgmtEditComponent implements OnInit {
       this.qualifications = qualifications;
       this.qualifications.forEach((qualification) => {
         const index  = this.employee.qualifications.findIndex(q => qualification.id === q.id );
-        if (index > -1) {
-          qualification.selected = true;
-          console.log('Found: ' + qualification.name);
-        } else {
-          qualification.selected = false;
-          console.log('Not found: ' + qualification.name);
-        }
+        qualification.selected = index > -1;
       });
     });
   }
-  // TODO: Remove this when we're done
-  get diagnostic() {
-    return JSON.stringify(this.employee);
-  }
   select(qualification: Qualification) {
-    console.log('Name: ' + qualification.name + ' / Selected: ' + qualification.selected);
     if (!qualification.selected) {
       this.employee.qualifications.push(qualification);
     } else {
-      const index = this.employee.qualifications.findIndex(q => qualification.id === q.id );
-      if (index > -1) {
-        this.employee.qualifications.splice(index, 1);
-      }
+      this.employee.qualifications = this.employee.qualifications.filter((q) => q.id !== qualification.id);
     }
   }
   onSubmit() {
