@@ -7,7 +7,7 @@
     <ng-container *ngFor="let employee of employees">
       <div class="col-lg-4">
         <div class="card  mb-4" routerLink="/employees/{{employee.id}}" style="width: 100%">
-          <img class="card-img-top" src="https://picsum.photos/g/300/180/?image={{employee.id * 10}}" alt="Card image cap">
+          <img class="card-img-top" src="https://picsum.photos/g/300/180/?image={{employee.id * 15}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{ employee.firstName }} {{ employee.lastName }}</h5>
             <p class="card-text">{{ employee.position }}</p>

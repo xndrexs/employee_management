@@ -38,11 +38,6 @@ export class EmployeeMgmtEditComponent implements OnInit {
     });
   }
 
-  setQualificationCheckbox(qualification: Qualification): void {
-    const index  = this.employee.qualifications.findIndex(q => qualification.id === q.id );
-    qualification.selected = index > -1;
-  }
-
   select(qualification: Qualification) {
     if (!qualification.selected) {
       this.employee.qualifications.push(qualification);
@@ -60,5 +55,10 @@ export class EmployeeMgmtEditComponent implements OnInit {
   initEmployee(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.employeeService.getEmployee(this.id).subscribe(employee => this.employee = employee);
+  }
+
+  private setQualificationCheckbox(qualification: Qualification): void {
+    const index  = this.employee.qualifications.findIndex(q => qualification.id === q.id );
+    qualification.selected = index > -1;
   }
 }

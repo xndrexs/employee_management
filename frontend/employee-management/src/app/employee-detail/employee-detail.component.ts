@@ -10,7 +10,7 @@ import { EmployeeService } from '../services/employee.service';
   styleUrls: ['./employee-detail.component.scss']
 })
 export class EmployeeDetailComponent implements OnInit {
-  @Input() employee: Employee;
+  employee: Employee;
   id: number;
 
   constructor(

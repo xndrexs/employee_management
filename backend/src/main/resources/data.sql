@@ -4,6 +4,12 @@ INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name,
 INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (4, 'German', 'Bachelor', 'Amelia', 'Wilewska', 'Baby');
 INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (5, 'German', 'Bachelor', 'Constantin', 'Fülle', 'Consti');
 INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (6, 'German', 'Bachelor', 'Nils', 'Nispel', 'Nilsi');
+INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (7, 'German', 'Bachelor', 'Nils', 'Nispel', 'Nilsi');
+INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (8, 'German', 'Bachelor', 'Nils', 'Nispel', 'Nilsi');
+INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (9, 'German', 'Bachelor', 'Nils', 'Nispel', 'Nilsi');
+INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (10, 'German', 'Bachelor', 'Nils', 'Nispel', 'Nilsi');
+INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (11, 'German', 'Bachelor', 'Nils', 'Nispel', 'Nilsi');
+INSERT INTO employeedb.employee (id, citizenship, degree, first_name, last_name, position) VALUES (12, 'German', 'Bachelor', 'Nils', 'Nispel', 'Nilsi');
 
 INSERT INTO employeedb.qualification (id, name, img) VALUES (1, 'Java', 'https://www.detim.de/wp-content/uploads/2017/03/JAVA-original-wordmark-162x300.png');
 INSERT INTO employeedb.qualification (id, name, img) VALUES (2, 'Angular', 'https://www.detim.de/wp-content/uploads/2017/03/ANGULAR_js-original-284x300.png');
