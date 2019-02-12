@@ -37,6 +37,6 @@ export class EmployeeService {
   }
 
   deleteEmployee(id: number): Observable<number> {
-    return this.httpClient.delete(this.url + id) as Observable<Number>;
+    return this.httpClient.delete(this.url + id) as Observable<number>;
   }
 }
